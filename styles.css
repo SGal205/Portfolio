@@ -1,0 +1,66 @@
+
+/* PADDING is distance of elements inside from border, and MARGIN is distance of border from body limits */
+/* Body makes up all visible content on webpage (GLOBAL visually) (head is metadata only) */
+body {
+  font-family: 'Open Sans', verdana;
+  margin: 0;
+  padding: 0;
+
+  background-image: url('bg_main.jpg');
+  background-attachment: fixed; /*Parallax effect - background stays fixed in position while rest of content moves*/
+}
+
+.nav-bar {
+ position: fixed;  /* Position fixed is where the position of the navbar stays fixed on the page (scroll and it scrolls with user), "sticky" is a hybrid where it moves but not past thresholds (divs or other structures) */
+ z-index: 1000;
+ padding: 0;
+ background-color: rgb(66, 66, 66);
+ width: 100%;
+ font-family: inherit;
+ 
+
+}
+
+.nav-bar a {
+  color: rgb(255, 255, 255);
+  text-decoration: inherit;
+  font-size: 20px;
+
+}
+
+.nav-bar a i {
+  font-size: 25px
+}
+
+
+.nav-bar a.active {
+  background-color: rgb(255, 0, 0);
+}
+
+h1 {
+ color:rgb(255, 255, 255);
+ margin-left: 1.5%;
+ padding: 2%;
+ border-color: antiquewhite;
+ 
+ 
+}
+ 
+h2 {
+ color:rgb(255, 255, 255);
+ margin-left: 1.5%;
+}
+
+p , li {
+  color: rgb(99, 96, 96);
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.content {
+  background-color: rgba(0, 0, 0, 80%);
+  margin-bottom: 0;
+  padding-bottom: 200%;  z-index: 0;
+}
+
+
