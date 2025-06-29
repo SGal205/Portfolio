@@ -55,7 +55,7 @@ body {
 
 .image-loaded .blurText {
   animation: blurToFocus 2s ease-out forwards;
-  animation-delay: 0.5s;
+  animation-delay: 0.2s; /* Quick start for greeting */
 }
 
 .blurText2 {
@@ -64,8 +64,8 @@ body {
 }
 
 .image-loaded .blurText2 {
-  animation: blurToFocus 2s ease-out forwards;
-  animation-delay: 0.5s;
+  animation: blurToFocus 2.5s ease-out forwards;
+  animation-delay: 0.8s; /* Slight delay for description */
 }
 
 .emphasize {
@@ -80,7 +80,7 @@ body {
 
 .image-loaded .emphasize {
   animation: highlight 1s ease-in-out forwards;
-  animation-delay: 3s;
+  animation-delay: 3.5s; /* Later delay for highlights */
 }
 
 
