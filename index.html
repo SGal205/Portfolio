@@ -11,22 +11,46 @@
         <title>Sujan Galpottage | Mechatronics Engineering</title>
         
         <script>
-            // Function to check if portrait overlay is visible
+            // Function to detect if we're on a mobile device
+            function isMobileDevice() {
+                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                       (window.innerWidth <= 896 && 'ontouchstart' in window);
+            }
+
+            // Function to check if we're in portrait mode
+            function isPortraitMode() {
+                return window.innerHeight > window.innerWidth;
+            }
+
+            // Function to check if we're on a mobile device in portrait mode
+            function isMobilePortrait() {
+                return isMobileDevice() && isPortraitMode();
+            }
+
+            // Function to check if portrait overlay should be visible
             function isPortraitOverlayVisible() {
                 const overlay = document.querySelector('.portrait-overlay');
                 if (!overlay) return false;
+                
+                // Check if we're on mobile in portrait mode
+                if (!isMobilePortrait()) {
+                    return false;
+                }
+                
                 const computedStyle = window.getComputedStyle(overlay);
                 return computedStyle.display !== 'none';
             }
 
             // Function to start animations
             function startAnimations() {
-                // Only start if overlay is not visible
+                // Only start if overlay is not visible or if we're not on mobile
                 if (!isPortraitOverlayVisible()) {
                     document.body.classList.add('image-loaded');
-                    console.log('Animations started - portrait overlay hidden');
+                    console.log('Animations started - portrait overlay hidden or not applicable');
+                    console.log('Mobile device:', isMobileDevice(), 'Portrait mode:', isPortraitMode());
                 } else {
                     console.log('Waiting for portrait overlay to hide...');
+                    console.log('Mobile device:', isMobileDevice(), 'Portrait mode:', isPortraitMode());
                 }
             }
 
@@ -42,7 +66,7 @@
                             startAnimations();
                         }, 500); // 500ms delay after image loads
                     };
-                    bgImage.src = 'bg_main.jpg';
+                    bgImage.src = 'bg_3.jpg'; // Updated to match CSS
                 }, 300); // 300ms delay after page loads
             });
 
@@ -52,7 +76,7 @@
             });
 
             window.addEventListener('orientationchange', function() {
-                setTimeout(startAnimations, 200);
+                setTimeout(startAnimations, 300);
             });
         </script>
     </head>
@@ -68,7 +92,7 @@
         </section>
         
         <section id = "Landing" class = "main">
-            <p><span class="blurText" style = "font-weight: 700; line-height: 0.5;">Kia Ora,<br> I'm </span><span style = "color: rgb(200, 213, 86); font-weight: 800; line-height: 0.5; padding-bottom: 0.25vw;">SUJAN</span></p>
+            <p><span class="blurText" style = "font-weight: 700; line-height: 0.5;">Kia Ora,<br> I'm </span><span style = "color: rgb(183, 198, 19); font-weight: 800; line-height: 0.5; padding-bottom: 0.25vw;">SUJAN</span></p>
             <p class = "blurText2" style = "text-align: justify; padding-left: 9vw; padding-right: 45vw; font-size: clamp(1rem , 1.35vw, 1.35vw); line-height: 1.1;">
                 A dedicated and meticulous <span class = "emphasize">Part III Mechatronics</span> Engineering student, 
                 I am <span class = "emphasize">driven</span> by the challenge of designing <span class = "emphasize">innovative</span> engineering solutions 

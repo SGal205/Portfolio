@@ -60,10 +60,30 @@ html, body {
 
 
 
+/* NAVBAR STYLES */
+/* __________________________________________________________________________________________*/
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+    /* Make sure navbar doesn't take up any space */
+}
+
+.navbar > div {
+    margin: 0;
+    padding: 0;
+    height: 0;
+}
+
 /* Portrait Mode Overlay */
 /* __________________________________________________________________________________________*/
 .portrait-overlay {
-  display: flex; /* Show by default on mobile */
+  display: none; /* Hidden by default */
   position: fixed;
   top: 0;
   left: 0;
@@ -79,22 +99,43 @@ html, body {
   pointer-events: none; /* Allow clicks to pass through if needed */
 }
 
-/* Hide on desktop computers */
-@media (min-width: 1024px) {
+/* Show on mobile devices in portrait mode - using device characteristics */
+@media screen and (max-device-width: 896px) and (orientation: portrait) {
   .portrait-overlay {
-    display: none;
+    display: flex;
   }
 }
 
-/* Hide when in landscape mode on mobile */
-@media (max-width: 1023px) and (orientation: landscape) {
+/* Alternative check for mobile devices using max-width and aspect ratio */
+@media screen and (max-width: 844px) and (max-aspect-ratio: 1/1) {
+  .portrait-overlay {
+    display: flex;
+  }
+}
+
+/* Additional check for very narrow screens (typical phone portrait) */
+@media screen and (max-width: 480px) {
+  .portrait-overlay {
+    display: flex;
+  }
+}
+
+/* Hide on landscape mode for mobile */
+@media screen and (max-device-width: 896px) and (orientation: landscape) {
   .portrait-overlay {
     display: none !important;
   }
 }
 
-/* Also hide when width > height (landscape detection) */
-@media (max-width: 1023px) and (min-aspect-ratio: 1/1) {
+/* Force hide on larger screens (tablets and desktops) */
+@media screen and (min-width: 845px) and (min-device-width: 845px) {
+  .portrait-overlay {
+    display: none !important;
+  }
+}
+
+/* Additional desktop detection using hover capability */
+@media (hover: hover) and (pointer: fine) and (min-width: 845px) {
   .portrait-overlay {
     display: none !important;
   }
@@ -117,7 +158,7 @@ html, body {
   font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: rgb(200, 213, 86);
+  color: rgb(229, 255, 0);
 }
 
 .portrait-message p {
@@ -148,8 +189,6 @@ html, body {
   animation: arrowPulse 1.5s infinite;
   color: rgb(200, 213, 86);
 }
-
-/* Portrait overlay controlled by JavaScript - no media queries needed */
 
 /* Animations for the overlay */
 @keyframes fadeInBounce {
@@ -244,7 +283,7 @@ html, body {
     font-weight: normal;
   }
   to {
-    background-color: rgba(200, 213, 86, 0.3);
+    background-color: rgba(229, 255, 0, 0.3);
     font-weight: bold;
   }
 }
