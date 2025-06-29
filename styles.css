@@ -29,8 +29,8 @@ body {
     height: 100vh;
     /* background-attachment: fixed; */
     background-image: url('bg_main.jpg');
-    background-position: top right; /* Shows right side, crops left */
-    background-size: cover; /* Covers full area, maintains aspect ratio, crops if too large */
+    background-position: top center; /* Shows right side, crops left */
+    background-size: 100vw auto; /* Covers full width, maintains aspect ratio, crops if too large */
     background-repeat: no-repeat;
     
     display: flex;
@@ -51,6 +51,122 @@ body {
 
 
 
+/* Portrait Mode Black Overlay - FINAL VERSION */
+.portrait-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* TEMPORARY: Show on ALL mobile devices for testing */
+@media screen and (max-width: 768px) {
+  .portrait-overlay {
+    display: flex;
+  }
+  
+  body {
+    overflow: hidden;
+  }
+}
+
+.portrait-message {
+  padding: 2rem;
+  max-width: 80%;
+  animation: fadeInBounce 0.8s ease-out;
+}
+
+.rotate-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  animation: rotateIcon 2s infinite ease-in-out;
+}
+
+.portrait-message h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: rgb(200, 213, 86);
+}
+
+.portrait-message p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.rotate-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2rem;
+  margin-top: 1.5rem;
+}
+
+.phone-icon {
+  transition: transform 0.5s ease;
+}
+
+.phone-icon.rotated {
+  transform: rotate(90deg);
+}
+
+.arrow-icon {
+  animation: arrowPulse 1.5s infinite;
+  color: rgb(200, 213, 86);
+}
+
+/* Portrait overlay controlled by JavaScript - no media queries needed */
+
+/* Animations for the overlay */
+@keyframes fadeInBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.8);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(10px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes rotateIcon {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(-10deg) scale(1.1);
+  }
+  75% {
+    transform: rotate(10deg) scale(1.1);
+  }
+}
+
+@keyframes arrowPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
 
 
 .blurText {
@@ -89,6 +205,10 @@ body {
   animation: highlight 0.5s ease-in-out forwards;
   animation-delay: 1.6s; /* Later delay for highlights */
 }
+
+
+
+
 
 
 
