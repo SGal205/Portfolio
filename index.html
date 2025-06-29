@@ -11,10 +11,16 @@
         <title>Sujan Galpottage | Mechatronics Engineering</title>
         
         <script>
-            // Function to detect if we're on a mobile device
+            // Function to detect if we're on a mobile device (strict detection)
             function isMobileDevice() {
-                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                       (window.innerWidth <= 896 && 'ontouchstart' in window);
+                const userAgent = navigator.userAgent;
+                const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+                const isTouchDevice = 'ontouchstart' in window && navigator.maxTouchPoints > 0;
+                const hasCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+                const hasNoHover = window.matchMedia('(hover: none)').matches;
+                
+                // Must be a touch device with coarse pointer (excludes laptops with touchscreens)
+                return isMobileUA && isTouchDevice && hasCoarsePointer && hasNoHover;
             }
 
             // Function to check if we're in portrait mode

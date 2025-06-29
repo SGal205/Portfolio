@@ -37,7 +37,7 @@ html, body {
     width: 100vw;
     height: 100vh;
     /* background-attachment: fixed; */
-    background-image: url('bg_3.jpg');
+    background-image: url('bg_2.jpg');
     background-position: bottom; /* Shows right side, crops left */
     background-size: 100vw auto; /* Covers full width, maintains aspect ratio, crops if too large */
     background-repeat: no-repeat;
@@ -99,43 +99,36 @@ html, body {
   pointer-events: none; /* Allow clicks to pass through if needed */
 }
 
-/* Show on mobile devices in portrait mode - using device characteristics */
-@media screen and (max-device-width: 896px) and (orientation: portrait) {
+/* ONLY show on touch devices (mobile/tablet) in portrait mode */
+@media (hover: none) and (pointer: coarse) and (orientation: portrait) {
   .portrait-overlay {
     display: flex;
   }
 }
 
-/* Alternative check for mobile devices using max-width and aspect ratio */
-@media screen and (max-width: 844px) and (max-aspect-ratio: 1/1) {
+/* Additional mobile-only detection for older devices */
+@media (max-device-width: 480px) and (orientation: portrait) {
   .portrait-overlay {
     display: flex;
   }
 }
 
-/* Additional check for very narrow screens (typical phone portrait) */
-@media screen and (max-width: 480px) {
-  .portrait-overlay {
-    display: flex;
-  }
-}
-
-/* Hide on landscape mode for mobile */
-@media screen and (max-device-width: 896px) and (orientation: landscape) {
+/* FORCE HIDE on devices with fine pointer control (desktop/laptop) */
+@media (hover: hover) and (pointer: fine) {
   .portrait-overlay {
     display: none !important;
   }
 }
 
-/* Force hide on larger screens (tablets and desktops) */
-@media screen and (min-width: 845px) and (min-device-width: 845px) {
+/* FORCE HIDE on larger screens regardless of other conditions */
+@media (min-width: 1024px) {
   .portrait-overlay {
     display: none !important;
   }
 }
 
-/* Additional desktop detection using hover capability */
-@media (hover: hover) and (pointer: fine) and (min-width: 845px) {
+/* FORCE HIDE when in landscape mode */
+@media (orientation: landscape) {
   .portrait-overlay {
     display: none !important;
   }
