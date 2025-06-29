@@ -184,6 +184,7 @@ body {
 
 .blurText {
   opacity: 0;
+  padding-bottom: 1.25vw;
   /* Animation starts only after image loads */
 }
 
