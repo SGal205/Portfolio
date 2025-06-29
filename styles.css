@@ -35,11 +35,11 @@ body {
     
     display: flex;
     flex-direction: column;
-    justify-content: top;
+    justify-content: center;
 
     text-align: left;
-    font-weight: 250;
-    font-size: 7vw;    
+    font-weight: 350;
+    font-size: 3vw;    
 }
 
 
