@@ -35,7 +35,7 @@ body {
 
     text-align: left;
     font-weight: 100;
-    font-size: 7.5vw;    
+    font-size: 7vw;    
 }
 
 .main#Landing p {
@@ -54,7 +54,8 @@ body {
 }
 
 .image-loaded .blurText {
-  animation: blurToFocus 1.5s ease-out forwards;
+  animation: blurToFocus 1s ease-out forwards,
+              animR 0.5s ease-in-out forwards;
   animation-delay: 0.2s; /* Quick start for greeting */
 }
 
@@ -64,8 +65,9 @@ body {
 }
 
 .image-loaded .blurText2 {
-  animation: blurToFocus 1.5s ease-out forwards;
-  animation-delay: 0.8s; /* Slight delay for description */
+  animation: blurToFocus 1s ease-out forwards,
+              animL 0.5s ease-in-out forwards;
+  animation-delay: 0.2s; /* Slight delay for description */
 }
 
 .emphasize {
@@ -79,8 +81,8 @@ body {
 }
 
 .image-loaded .emphasize {
-  animation: highlight 1s ease-in-out forwards;
-  animation-delay: 2.5s; /* Later delay for highlights */
+  animation: highlight 0.5s ease-in-out forwards;
+  animation-delay: 1.6s; /* Later delay for highlights */
 }
 
 
@@ -128,9 +130,20 @@ body {
   }
 }
 
-@keyframes anim2{
+@keyframes animL{
   from {
-    transform: translateX(100vw);
+    transform: translateX(25vw);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes animR{
+  from {
+    transform: translateX(-10vw);
     opacity: 0;
   }
   to {
