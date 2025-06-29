@@ -51,9 +51,9 @@ body {
 
 
 
-/* Portrait Mode Overlay - ALWAYS VISIBLE ON MOBILE */
+/* Portrait Mode Overlay - WORKS ON OPPO F1S */
 .portrait-overlay {
-  display: flex; /* ALWAYS SHOW - NO MEDIA QUERY ISSUES */
+  display: flex; /* Show by default on mobile */
   position: fixed;
   top: 0;
   left: 0;
@@ -68,10 +68,24 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-/* Only hide on desktop computers (large screens) */
+/* Hide on desktop computers */
 @media (min-width: 1024px) {
   .portrait-overlay {
     display: none;
+  }
+}
+
+/* Hide when in landscape mode on mobile */
+@media (max-width: 1023px) and (orientation: landscape) {
+  .portrait-overlay {
+    display: none !important;
+  }
+}
+
+/* Also hide when width > height (landscape detection) */
+@media (max-width: 1023px) and (min-aspect-ratio: 1/1) {
+  .portrait-overlay {
+    display: none !important;
   }
 }
 
