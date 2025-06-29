@@ -23,20 +23,25 @@ body {
 
 .main#Landing {
     padding: 0px;
+    margin-top: 0vh;
     margin: 0px;
+    width: 100vw;
     height: 100vh;
     /* background-attachment: fixed; */
     background-image: url('bg_main.jpg');
-    background-size: cover;
+    background-position: top right; /* Shows right side, crops left */
+    background-size: cover; /* Covers full area, maintains aspect ratio, crops if too large */
+    background-repeat: no-repeat;
     
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: top;
 
     text-align: left;
-    font-weight: 100;
+    font-weight: 250;
     font-size: 7vw;    
 }
+
 
 .main#Landing p {
   display: inline-block;
