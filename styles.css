@@ -1,11 +1,20 @@
-body {
-    padding: 0px;
-    margin: 0px;
+/* UNIVERSAL RESET - Fixes cross-browser spacing issues */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
     text-align: justify;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* 
@@ -28,7 +37,7 @@ body {
     width: 100vw;
     height: 100vh;
     /* background-attachment: fixed; */
-    background-image: url('bg_main.jpg');
+    background-image: url('bg_3.jpg');
     background-position: bottom; /* Shows right side, crops left */
     background-size: 100vw auto; /* Covers full width, maintains aspect ratio, crops if too large */
     background-repeat: no-repeat;
