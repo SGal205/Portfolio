@@ -39,7 +39,7 @@ html, body {
     /* background-attachment: fixed; */
     background-image: url('bg-4.png');
     background-position: top left; /* Shows right side, crops left */
-    background-size: 105vw auto; /* Covers full width, maintains aspect ratio, crops if too large */
+    background-size: 115vw auto; /* Covers full width, maintains aspect ratio, crops if too large */
     background-repeat: no-repeat;
     
     display: flex;
