@@ -38,8 +38,8 @@ html, body {
     height: 100vh;
     /* background-attachment: fixed; */
     background-image: url('bg-4.png');
-    background-position: bottom; /* Shows right side, crops left */
-    background-size: 100vw auto; /* Covers full width, maintains aspect ratio, crops if too large */
+    background-position: top left; /* Shows right side, crops left */
+    background-size: 105vw auto; /* Covers full width, maintains aspect ratio, crops if too large */
     background-repeat: no-repeat;
     
     display: flex;
