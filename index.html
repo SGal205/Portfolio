@@ -11,6 +11,25 @@
         <title>Sujan Galpottage | Mechatronics Engineering</title>
         
         <script>
+            // Function to check if portrait overlay is visible
+            function isPortraitOverlayVisible() {
+                const overlay = document.querySelector('.portrait-overlay');
+                if (!overlay) return false;
+                const computedStyle = window.getComputedStyle(overlay);
+                return computedStyle.display !== 'none';
+            }
+
+            // Function to start animations
+            function startAnimations() {
+                // Only start if overlay is not visible
+                if (!isPortraitOverlayVisible()) {
+                    document.body.classList.add('image-loaded');
+                    console.log('Animations started - portrait overlay hidden');
+                } else {
+                    console.log('Waiting for portrait overlay to hide...');
+                }
+            }
+
             // Wait for everything to be fully loaded before starting animations
             window.addEventListener('load', function() {
                 // Additional delay to ensure everything is completely loaded
@@ -18,13 +37,22 @@
                     // Create a temporary image to check if background loads
                     const bgImage = new Image();
                     bgImage.onload = function() {
-                        // Add another small delay before starting animations
+                        // Add another small delay before checking to start animations
                         setTimeout(function() {
-                            document.body.classList.add('image-loaded');
+                            startAnimations();
                         }, 500); // 500ms delay after image loads
                     };
                     bgImage.src = 'bg_main.jpg';
                 }, 300); // 300ms delay after page loads
+            });
+
+            // Listen for orientation changes to start animations when overlay disappears
+            window.addEventListener('resize', function() {
+                setTimeout(startAnimations, 100);
+            });
+
+            window.addEventListener('orientationchange', function() {
+                setTimeout(startAnimations, 200);
             });
         </script>
     </head>
