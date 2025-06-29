@@ -9,12 +9,25 @@
         <link rel="stylesheet" href="styles.css"> <!-- Linked to styles.css, enabling universal stiles across all pages on web page -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Icon pack  -->
         <title>Sujan Galpottage | Mechatronics Engineering</title>
+        
+        <script>
+            // Wait for background image to load before starting animations
+            window.addEventListener('load', function() {
+                // Create a temporary image to check if background loads
+                const bgImage = new Image();
+                bgImage.onload = function() {
+                    // Add class to start animations after image loads
+                    document.body.classList.add('image-loaded');
+                };
+                bgImage.src = 'bg_main.jpg';
+            });
+        </script>
     </head>
     
     <body>
         
         <section class = "navbar">
-          <div class = "active"></div>
+          <div class = "active"><a></a></div>
           <div></div>
           <div></div>
           <div></div>

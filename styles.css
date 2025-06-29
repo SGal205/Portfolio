@@ -50,25 +50,37 @@ body {
 
 .blurText {
   opacity: 0;
+  /* Animation starts only after image loads */
+}
+
+.image-loaded .blurText {
   animation: blurToFocus 2s ease-out forwards;
-  line-height: 1vw;
-  padding-bottom: 1vw;
+  animation-delay: 0.5s;
 }
 
 .blurText2 {
   opacity: 0;
+  /* Animation starts only after image loads */
+}
+
+.image-loaded .blurText2 {
   animation: blurToFocus 2s ease-out forwards;
+  animation-delay: 0.5s;
 }
 
 .emphasize {
   display: inline-block;
-  background-color: transparent;  /* Start with transparent */
-  font-weight: normal;            /* Start with normal weight */
-  animation: highlight 1s ease-in-out forwards;
-  animation-delay: 1s;
+  background-color: transparent;
+  font-weight: normal;
   margin: 2px 0px;
-  padding: 3px; /* Optional: add some padding for better visibility */
-  border-radius: 7px;         /* Optional: rounded corners */
+  padding: 3px;
+  border-radius: 7px;
+  /* Animation starts only after image loads */
+}
+
+.image-loaded .emphasize {
+  animation: highlight 1s ease-in-out forwards;
+  animation-delay: 3s;
 }
 
 
