@@ -35,17 +35,79 @@ body {
 
     text-align: left;
     font-weight: 100;
-    font-size: 7.5vw;
-    
-    p {
-        padding-left: 7.5vw;
-        margin: 0
-    }
+    font-size: 7.5vw;    
+}
 
-    .Animate1 {
-        opacity: 0;
-        animation: fadeIn 5s ease forwards;
-    }
+.main#Landing p {
+  display: inline-block;
+  margin: 0;
+  padding-left: 7.5vw;
+}
+
+
+
+
+
+.blurText {
+  opacity: 0;
+  animation: blurToFocus 2s ease-out forwards;
+  line-height: 1vw;
+  padding-bottom: 1vw;
+}
+
+.blurText2 {
+  opacity: 0;
+  animation: blurToFocus 2s ease-out forwards;
+}
+
+.emphasize {
+  display: inline-block;
+  background-color: transparent;  /* Start with transparent */
+  font-weight: normal;            /* Start with normal weight */
+  animation: highlight 1s ease-in-out forwards;
+  animation-delay: 1s;
+  margin: 2px 0px;
+  padding: 3px; /* Optional: add some padding for better visibility */
+  border-radius: 7px;         /* Optional: rounded corners */
+}
+
+
+
+/* ANIMATIONS */
+/* __________________________________________________________________________________________*/
+
+@keyframes highlight {
+  from {
+    background-color: transparent;
+    font-weight: normal;
+  }
+  to {
+    background-color: rgba(200, 213, 86, 0.3);
+    font-weight: bold;
+  }
+}
+
+@keyframes blurToFocus {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(1.02);
+  }
+  30% {
+    opacity: 0.3;
+    filter: blur(5px);
+    transform: scale(1.01);
+  }
+  70% {
+    opacity: 0.8;
+    filter: blur(1px);
+    transform: scale(1.005);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
 }
 
 @keyframes fadeIn {
@@ -53,3 +115,16 @@ body {
     opacity: 1;
   }
 }
+
+@keyframes anim2{
+  from {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
