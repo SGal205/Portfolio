@@ -51,16 +51,16 @@ body {
 
 
 
-/* Portrait Mode Black Overlay - FINAL VERSION */
+/* Portrait Mode Overlay - ALWAYS VISIBLE ON MOBILE */
 .portrait-overlay {
-  display: none; /* Hidden by default */
+  display: flex; /* ALWAYS SHOW - NO MEDIA QUERY ISSUES */
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.95);
-  z-index: 99999;
+  z-index: 999999;
   justify-content: center;
   align-items: center;
   color: white;
@@ -68,14 +68,10 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-/* TEMPORARY: Show on ALL mobile devices for testing */
-@media screen and (max-width: 768px) {
+/* Only hide on desktop computers (large screens) */
+@media (min-width: 1024px) {
   .portrait-overlay {
-    display: flex;
-  }
-  
-  body {
-    overflow: hidden;
+    display: none;
   }
 }
 
