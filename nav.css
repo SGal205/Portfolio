@@ -31,6 +31,25 @@
     font-size: 14px;
 }
 
+/* RESUME DOWNLOAD DROPDOWN: */
+/* ============================================================================= */
+.Navbar .Resume {
+    display: inline-block;
+    
+}
+
+.Dropdown {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+
+
+/* STYLING AND HOVER EFFECTS */
+/* ============================================================================= */
+
+/* DO NOT APPLY HOVER EFFECTS ON ACTIVE PAGE */
 .Navbar .active,
 .active a:hover  {
     color: rgb(183, 198, 19);
@@ -38,12 +57,17 @@
     box-shadow: none !important;
 }
 
+/* Upon hover display <a> elements theme colour bold and with shadow below */
 .Navbar a:hover {
     color: rgb(183, 198, 19);
     font-weight: bold;
     box-shadow: 0 10px 5px -8px rgba(0,0,0,0.35);
 }
 
+
+
+/* RESPONSIVE LAYOUT */
+/* ============================================================================== */
 /* Extra specificity for page-loaded state to prevent conflicts */
 @media (max-width: 935px) {
     .page-loaded .Navbar {
