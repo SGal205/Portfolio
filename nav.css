@@ -4,31 +4,22 @@
 @import url("styles.css");
 
 .Navbar {
-    /* Make NavBar a flex container */
     display: flex;
-    /* Horizontal bar (<a> elements sit side by side rather than above or below) */
     flex-direction: row;
-    /* Right justifies the <a> elements inside */
     justify-content: right;
-    /* Ensure Navbar sits flush with edges of webpage */
     margin: 0 1vw 0 0;
     padding: 0;
     background-color: rgba(210, 210, 210, 0.9);
-    /* Set position as fixed to allow it to move with scroll */
     position: fixed;
-    /* When position is set as fixed, positioning of element is relative to the viewport
-       removing the element from the normal document flow and so if left, right, width,
-       is not fully constrained it may collapse. Hence the following:  */
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
 
-    /* Animations: Drop down from above */
-    opacity: 0; /* Start invisible within delay so it doesn't appear then disappear and then reappear */
+    /* Simple navbar animation */
+    opacity: 0;
     animation: slideD 0.5s forwards;
     animation-delay: 0.5s;
-    
 }
 
 .Navbar a {
@@ -40,9 +31,24 @@
     font-size: 14px;
 }
 
+.Navbar .active,
+.active a:hover  {
+    color: rgb(183, 198, 19);
+    font-weight: bold;
+    box-shadow: none !important;
+}
+
+.Navbar a:hover {
+    color: rgb(183, 198, 19);
+    font-weight: bold;
+    box-shadow: 0 10px 5px -8px rgba(0,0,0,0.35);
+}
+
+/* Extra specificity for page-loaded state to prevent conflicts */
 @media (max-width: 935px) {
-    .Navbar {
-        justify-content: center; /* Center the links on smaller screens */
+    .page-loaded .Navbar {
+        justify-content: center !important;
+        margin: 0 !important;
     }
 }
 
