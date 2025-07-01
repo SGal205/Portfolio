@@ -9,11 +9,18 @@
             // You can safely ignore this section - it just controls when animations start
             
             document.addEventListener('DOMContentLoaded', function() {
+                // PREVENT AUTO-SCROLLING ON LOAD
+                window.scrollTo(0, 0);
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+                
                 // Add a class to body to indicate page is loading
                 document.body.classList.add('page-loading');
                 
                 // Function to start all animations
                 function startAnimations() {
+                    // Keep page at top when starting animations
+                    window.scrollTo(0, 0);
                     document.body.classList.remove('page-loading');
                     document.body.classList.add('page-loaded');
                     console.log('Page fully loaded - animations started!');
@@ -21,6 +28,8 @@
                 
                 // Wait for everything to load completely
                 window.addEventListener('load', function() {
+                    // Keep page at top
+                    window.scrollTo(0, 0);
                     // Small delay to ensure everything is truly ready
                     setTimeout(function() {
                         startAnimations();
@@ -34,6 +43,13 @@
                         console.log('Backup timer: Starting animations');
                     }
                 }, 3000);
+                
+                // Prevent scrolling during page load
+                window.addEventListener('scroll', function() {
+                    if (document.body.classList.contains('page-loading')) {
+                        window.scrollTo(0, 0);
+                    }
+                });
             });
         </script>
         <!-- ================================================================================================ -->

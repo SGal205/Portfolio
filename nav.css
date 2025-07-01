@@ -40,3 +40,9 @@
     font-size: 14px;
 }
 
+@media (max-width: 935px) {
+    .Navbar {
+        justify-content: center; /* Center the links on smaller screens */
+    }
+}
+
