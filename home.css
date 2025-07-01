@@ -84,9 +84,9 @@
 }
 
 /* RESPONSIVE DESIGN FOR SMALLER SCREENS THIS SECTION WILL OVERWRITE ONLY WHATS STATED THERE
-    From testing: Pitch needs to go when screen width is below 768px */
+    From testing: Pitch needs to go when screen width is below 930px*/
 
-@media (max-width: 768px) {
+@media (max-width: 930px) {
 #Home p {
     padding: 0;
 }
