@@ -1,0 +1,124 @@
+/* Link to animations so they can be accessed: */
+@import url("animations.css");
+@import url("nav.css");
+@import url("resume.css");
+@import url("styles.css");
+
+#Home {
+    display: flex;
+    flex-direction: column; /* Vertical stacking of elements */
+    min-height: 57vw; /* Calculated 1/1.9 * 115vw = ESTIMATED height of BG from aspect ratio*/
+    height: fit-content; /* Allows the section to grow based on content */
+    justify-content: center; /* Centers content vertically within the section */
+
+    /* Background: */
+    background-image: url('BG.png');
+    background-size: 110vw auto; /* Ensures the background image aspect ratio is maintained - Covers width fully, and height is calculated from there auto*/
+    background-repeat: no-repeat; /* No repeat */
+}
+
+#Home p {
+    margin: 0;
+    padding: 0 7vw;
+}
+
+.Intro2 .Name {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    margin-left: 2vw;
+    font-weight: 750;
+    color: rgb(183, 198, 19);
+    font-size: clamp(24px, 6vw, 6vw);
+}
+
+/* NOTE: if we use .Intro.Greeting instead of .Intro .Greeting browser would be looking for element that has both classes 
+    applied to it whereas here we are looking for Greeting class WITHIN Intro class */
+
+/* N.B. If gap is appearing between two inline-block elements, it is likely due to whitespace in the HTML.
+    To fix this, ensure there are no spaces or line breaks between the elements in the HTML code. IN-LINE 
+    BLOCKS TREAT WHITESPACE AS A SPACE CHARACTER */
+
+.Intro1 .Greeting,
+.Intro2 .Greeting {
+    display: inline-block;
+    margin: 1vw 0;
+    font-weight: 700;
+    font-size: clamp(24px, 6vw, 6vw);
+    line-height: 0.5;
+    color: rgb(0, 0, 0);
+
+    /* ANIMATIONS: */
+    opacity: 0; /* Start invisible within delay so it doesn't appear then disappear and then reappear */
+    animation: blurToFocus 1s ease-out forwards,
+              slideR 0.5s ease-in-out forwards;
+    
+    animation-delay: 0.5s;
+}
+
+.Pitch {
+    display: block;
+    width: 45%;
+    font-size: clamp(16px, 1.5vw, 1.5vw); /* Responsive font size */
+    font-weight: 300;
+    line-height: 1.5;
+    text-align: justify;
+    letter-spacing: -0.25px;
+
+    /* ANIMATIONS: */
+    opacity: 0; /* Start invisible within delay so it doesn't appear then disappear and then reappear */
+     animation: blurToFocus 1s ease-out forwards,
+              slideL 0.5s ease-in-out forwards;
+    animation-delay: 0.5s;
+}
+
+.Pitch2 {
+    display: none; /* Hidden by default */
+}
+
+.highlight {
+    padding: 0 0.5vw; /* Adds padding to the highlighted text for better visibility */
+    animation: highlight 0.5s ease-in-out forwards;
+    animation-delay: 1s;
+    border-radius: 10px; /* Adds rounded corners to the highlighted text */
+}
+
+/* RESPONSIVE DESIGN FOR SMALLER SCREENS THIS SECTION WILL OVERWRITE ONLY WHATS STATED THERE
+    From testing: Pitch needs to go when screen width is below 768px */
+
+@media (max-width: 768px) {
+#Home p {
+    padding: 0;
+}
+
+.Intro1 .Greeting,
+.Intro2 .Greeting {
+    margin-left: 6vw;
+    font-size: 9vw; /* Adjusted for smaller screens so greeting proportional occupies more of missing space from shifting to below landing*/
+    
+}
+
+.Intro2 .Name {
+    font-size: 10vw; /* Adjusted for smaller screens */
+}
+
+ .Intro {
+    position: absolute;
+    top: calc(0.5* 55vw); 
+    /* Centers Greeting message vertically in background image */
+ }
+
+ .Pitch {
+    display: none; /* Hides Pitch on smaller screens */;
+ }
+
+ .Pitch2 {
+    display: block; /* Shows Pitch2 on smaller screens */
+    margin: 0;
+    text-align: justify;
+    opacity: 0; /* Start invisible within delay so it doesn't appear then disappear and then reappear */
+    animation: blurToFocus 1s ease-out forwards,
+              slideL 0.5s ease-in-out forwards;
+    animation-delay: 0.5s;
+ }
+}

@@ -1,162 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
+        <title>Sujan Galpottage | Mechatronics Engineering</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- MONTSERRAT FONT: -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        
-        <link rel="stylesheet" href="styles.css"> <!-- Linked to styles.css, enabling universal stiles across all pages on web page -->
+        <!-- ICON PACK: -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Icon pack  -->
-        <title>Sujan Galpottage | Mechatronics Engineering</title>
+        <script src="https://kit.fontawesome.com/6277525465.js" crossorigin="anonymous"></script>
         
-        <script>
-            // Function to detect if we're on a mobile device (strict detection)
-            function isMobileDevice() {
-                const userAgent = navigator.userAgent;
-                const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-                const isTouchDevice = 'ontouchstart' in window && navigator.maxTouchPoints > 0;
-                const hasCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
-                const hasNoHover = window.matchMedia('(hover: none)').matches;
-                
-                // Must be a touch device with coarse pointer (excludes laptops with touchscreens)
-                return isMobileUA && isTouchDevice && hasCoarsePointer && hasNoHover;
-            }
+        <!-- STYLESHEETS -->
+        <link rel="stylesheet" href="styles.css"> <!-- Linked to styles.css, enabling universal styles across all pages on web page -->
+        <link rel="stylesheet" href="nav.css"> 
+        <link rel="stylesheet" href="home.css"> 
 
-            // Function to check if we're in portrait mode
-            function isPortraitMode() {
-                return window.innerHeight > window.innerWidth;
-            }
-
-            // Function to check if we're on a mobile device in portrait mode
-            function isMobilePortrait() {
-                return isMobileDevice() && isPortraitMode();
-            }
-
-            // Function to check if portrait overlay should be visible
-            function isPortraitOverlayVisible() {
-                const overlay = document.querySelector('.portrait-overlay');
-                if (!overlay) return false;
-                
-                // Check if we're on mobile in portrait mode
-                if (!isMobilePortrait()) {
-                    return false;
-                }
-                
-                const computedStyle = window.getComputedStyle(overlay);
-                return computedStyle.display !== 'none';
-            }
-
-            // Function to start animations
-            function startAnimations() {
-                // Only start if overlay is not visible or if we're not on mobile
-                if (!isPortraitOverlayVisible()) {
-                    document.body.classList.add('image-loaded');
-                    console.log('Animations started - portrait overlay hidden or not applicable');
-                    console.log('Mobile device:', isMobileDevice(), 'Portrait mode:', isPortraitMode());
-                } else {
-                    console.log('Waiting for portrait overlay to hide...');
-                    console.log('Mobile device:', isMobileDevice(), 'Portrait mode:', isPortraitMode());
-                }
-            }
-
-            // Wait for everything to be fully loaded before starting animations
-            window.addEventListener('load', function() {
-                // Additional delay to ensure everything is completely loaded
-                setTimeout(function() {
-                    // Create a temporary image to check if background loads
-                    const bgImage = new Image();
-                    bgImage.onload = function() {
-                        // Add another small delay before checking to start animations
-                        setTimeout(function() {
-                            startAnimations();
-                        }, 500); // 500ms delay after image loads
-                    };
-                    bgImage.src = 'bg_3.jpg'; // Updated to match CSS
-                }, 300); // 300ms delay after page loads
-            });
-
-            // Listen for orientation changes to start animations when overlay disappears
-            window.addEventListener('resize', function() {
-                setTimeout(startAnimations, 100);
-            });
-
-            window.addEventListener('orientationchange', function() {
-                setTimeout(startAnimations, 300);
-            });
-        </script>
     </head>
-    
+
     <body>
-        
-        <section class = "navbar">
-          <div class = "active"><a></a></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </section>
-        
-        <section id = "Landing" class = "main">
-            <p><span class="blurText" style = "font-weight: 700; line-height: 0.5;">Kia Ora,<br> I'm </span><span style = "color: rgb(183, 198, 19); font-weight: 800; line-height: 0.5; padding-bottom: 0.25vw;">SUJAN</span></p>
-            <p class = "blurText2" style = "text-align: justify; padding-left: 9vw; padding-right: 45vw; font-size: clamp(1rem , 1.35vw, 1.35vw); line-height: 1.1;">
-                A dedicated and meticulous <span class = "emphasize">Part III Mechatronics</span> Engineering student, 
-                I am <span class = "emphasize">driven</span> by the challenge of designing <span class = "emphasize">innovative</span> engineering solutions 
-                for transformative industries like aerospace, aviation, and biomedical 
-                technology. My hands-on expertise in robotics, control systems, and CAD 
-                modeling is complemented by a <span class = "emphasize">passion</span>for precision-driven projects that 
-                merge <span class = "emphasize">creativity</span> with technical rigor. A collaborative <span class = "emphasize">problem-solver</span> at 
-                heart, I excel in team environments where <span class = "emphasize">analytical</span> thinking and 
-                <span class = "emphasize">adaptability</span> lead to <span class = "emphasize">impactful</span> results. Eager to expand my knowledge and 
-                skills, I am committed to contributing to cutting-edge engineering 
-                initiatives that push boundaries and improve lives on a global scale.
-            </p>
-        </section>
-      
-        <!-- Portrait Mode Overlay -->
-        <div class="portrait-overlay">
-            <div class="portrait-message">
-                <div class="rotate-icon">📱🔄</div>
-                <h2>Please Rotate Your Device</h2>
-                <p>This website is best viewed in landscape mode</p>
-                <div class="rotate-animation">
-                    <div class="phone-icon">📱</div>
-                    <div class="arrow-icon">→</div>
-                    <div class="phone-icon rotated">📱</div>
-                </div>
-            </div>
+        <!-- NAV BAR SECTION: -->
+        <!-- _______________________________________________________________________________________________________ -->
+        <div class = "Navbar">
+            <a class = "active" href = "#Home">
+                <!-- <i class="fa fa-home"></i> -->
+                Home
+            </a>
+
+            <a href = "projects.html">
+                <!-- <i class="fa-solid fa-toolbox"></i> -->
+                Projects
+            </a>
+
+            <a href = "#Resume" >
+                <!-- <i class="fa-solid fa-file"></i> -->
+                 Resume
+            </a>
+
+            <a href = "mailto:sujangalpottage@outlook.com">
+                <!-- <i class="fa-solid fa-address-book"></i> -->
+                Contact
+            </a>
+            
         </div>
 
-        <section id = "About-me" class = "main"> 
-            <h2>About me</h2> 
-            <p>
-                As a dedicated and meticulous third-year Mechatronics Engineering student, 
-                I am driven by the challenge of designing innovative engineering solutions 
-                for transformative industries like aerospace, aviation, and biomedical 
-                technology. My hands-on expertise in robotics, control systems, and CAD 
-                modeling is complemented by a passion for precision-driven projects that 
-                merge creativity with technical rigor. A collaborative problem-solver at 
-                heart, I excel in team environments where analytical thinking and 
-                adaptability lead to impactful results. Eager to expand my knowledge and 
-                skills, I am committed to contributing to cutting-edge engineering 
-                initiatives that push boundaries and improve lives on a global scale.
-            </p>
+
+        <!-- HOME -->
+        <!-- _______________________________________________________________________________________________________ -->
+
+        <section id = "Home">
+
+            <p class = "Intro1"><span class="Greeting">Kia Ora,</span></p>
+            <p class = "Intro2"><span class="Greeting">I'm</span><span class="Name">SUJAN</span></p>
+
+            <p class = "Pitch"><br>A <span class = "highlight">Part III Mechatronics</span> Engineering student, I am <span class = "highlight">driven</span> by a <span class = "highlight">passion</span> for
+                 designing <span class = "highlight">innovative</span>, <span class = "highlight">precision</span>-driven solutions across aerospace, biomedical, and 
+                 high-tech industries. With hands-on experience in robotics, control systems, and CAD 
+                 modeling, I blend <span class = "highlight">creativity</span> with technical rigor. A <span class = "highlight">collaborative</span> <span class = "highlight">problem-solver</span>, I 
+                 thrive in teams where <span class = "highlight">analytical</span> thinking and <span class = "highlight">adaptability</span> lead to impactful results. 
+                 I am eager to expand my knowledge and contribute to <span class = "highlight">transformative</span> engineering 
+                 initiatives that improve lives for all globally.</p>
+
+                
+
+           
+
+
         </section>
 
-        <hr>
+        <p class = "Pitch2"><br>A <span class = "highlight">Part III Mechatronics</span> Engineering student, I am <span class = "highlight">driven</span> by a <span class = "highlight">passion</span> for
+                 designing <span class = "highlight">innovative</span>, <span class = "highlight">precision</span>-driven solutions across aerospace, biomedical, and 
+                 high-tech industries. With hands-on experience in robotics, control systems, and CAD 
+                 modeling, I blend <span class = "highlight">creativity</span> with technical rigor. A <span class = "highlight">collaborative</span> <span class = "highlight">problem-solver</span>, I 
+                 thrive in teams where <span class = "highlight">analytical</span> thinking and <span class = "highlight">adaptability</span> lead to impactful results. 
+                 I am eager to expand my knowledge and contribute to <span class = "highlight">transformative</span> engineering 
+                 initiatives that improve lives for all globally.</p>
 
-        <section id = "Resume" class = "main"> 
-            <h2>Resume</h2> 
+        <!-- RESUME -->
+        <!-- _______________________________________________________________________________________________________ -->
+
+        <section id = "Resume">
+            <h1>Still in development! Completion ASAP!</h1>
+
         </section>
 
-        <hr>
-
-        <section id = "Contact" class = "main">
-            <h2>Contact</h2> 
+        <!-- CONTACT -->
+        <!-- _______________________________________________________________________________________________________ -->
+        <!-- https://www.w3schools.com/html/html_forms.asp -->
+        <section id = "Contact">
+            <!-- <form action="contact.php" method="POST">
+                <label for= "fname">First name:</label><br>
+                <input type="text" id="fname" name="fname"><br>
+                <label for="lname">Last name:</label><br>
+                <input type="text" id="lname" name="lname"><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email"><br>
+                <label for="subject">Subject:</label><br>
+                <input type="submit" value="Submit">
+            </form> -->
         </section>
+
+        <footer>
+            <p style = "color:rgb(162, 162, 162); text-align: center; padding: 2vw; margin: 0;" >© 2024 Sujan Galpottage | All rights reserved.<br>Last updated: July 1, 2025</p>
+        </footer>
         
 
     </body>
+    
 
 
 </html>
