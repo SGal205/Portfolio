@@ -1,3 +1,20 @@
+/* ================================================================================================ */
+/* ANIMATION PAUSE SYSTEM - PAUSES ALL ANIMATIONS UNTIL PAGE LOADS */
+/* ================================================================================================ */
+/* When page is loading, pause all animations */
+body.page-loading * {
+    animation-play-state: paused !important;
+    animation-delay: 0s !important;
+}
+
+/* When page is loaded, allow animations to play normally */
+body.page-loaded * {
+    animation-play-state: running !important;
+}
+/* ================================================================================================ */
+/* END ANIMATION PAUSE SYSTEM */
+/* ================================================================================================ */
+
 @import url("animations.css");
 @import url("nav.css");
 @import url("resume.css");

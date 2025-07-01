@@ -1,6 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- ================================================================================================ -->
+        <!-- JAVASCRIPT - ANIMATION CONTROL (PUT AT TOP FOR EASY MANAGEMENT) -->
+        <!-- ================================================================================================ -->
+        <script>
+            // This script pauses all animations until the page is fully loaded
+            // You can safely ignore this section - it just controls when animations start
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                // Add a class to body to indicate page is loading
+                document.body.classList.add('page-loading');
+                
+                // Function to start all animations
+                function startAnimations() {
+                    document.body.classList.remove('page-loading');
+                    document.body.classList.add('page-loaded');
+                    console.log('Page fully loaded - animations started!');
+                }
+                
+                // Wait for everything to load completely
+                window.addEventListener('load', function() {
+                    // Small delay to ensure everything is truly ready
+                    setTimeout(function() {
+                        startAnimations();
+                    }, 300);
+                });
+                
+                // Backup: Start animations after 3 seconds no matter what
+                setTimeout(function() {
+                    if (document.body.classList.contains('page-loading')) {
+                        startAnimations();
+                        console.log('Backup timer: Starting animations');
+                    }
+                }, 3000);
+            });
+        </script>
+        <!-- ================================================================================================ -->
+        <!-- END JAVASCRIPT SECTION -->
+        <!-- ================================================================================================ -->
+
         <title>Sujan Galpottage | Mechatronics Engineering</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
