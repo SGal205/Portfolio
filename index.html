@@ -52,6 +52,33 @@
                 });
             });
         </script>
+
+        <script>
+        // DROPDOWN TOGGLE FUNCTIONALITY
+        // ===============================================
+            /* When the user clicks on the button,
+            toggle between hiding and showing the dropdown content */
+            function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            // Close the dropdown menu if the user clicks outside of it
+            window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+                }
+            }
+            }
+        </script>
+
+
+
         <!-- ================================================================================================ -->
         <!-- END JAVASCRIPT SECTION -->
         <!-- ================================================================================================ -->
@@ -70,7 +97,7 @@
         
         <!-- STYLESHEETS -->
         <link rel="stylesheet" href="styles.css"> <!-- Linked to styles.css, enabling universal styles across all pages on web page -->
-        <link rel="stylesheet" href="nav.css"> 
+        <link rel="stylesheet" href="navbar.css"> 
         <link rel="stylesheet" href="home.css"> 
 
     </head>
@@ -79,7 +106,7 @@
         <!-- NAV BAR SECTION: -->
         <!-- _______________________________________________________________________________________________________ -->
         <div class = "Navbar">
-            <a class = "active" href = "index.html">
+            <a class = "current" href = "index.html">
                 <!-- <i class="fa fa-home"></i> -->
                 Home
             </a>
@@ -89,21 +116,14 @@
                 Projects
             </a>
 
-            <div>
-                <a class = "Resume" >
-                <!-- <i class="fa-solid fa-file"></i> -->
-                 Resume
-                </a>
-                <div class="Dropdown">
-                    <!-- target = "_blank" OPENS IN A NEW TAB/WINDOW -->
-                    <a href="resume.pdf" target="_blank">View PDF</a>
-                    <a href="Guiding.docx" target="_blank" download = "Sujan_Galpottage_Resume.docx">Download DOCX</a>
-                    <a href="resume.txt" target="_blank">Download TXT</a>
-
+            <div class="dropdown">
+                <a onclick="myFunction()" class="dropbtn">Resume</a>
+        
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="Sujan_Galpottage_Resume_2025.docx">.DOCX <i class="fa-solid fa-circle-down"></i></a>
+                    <a href="Sujan_Galpottage_Resume_2025.pdf" target ="_blank">.PDF <i class="fa-solid fa-circle-down"></i></a>
                 </div>
-                                      
-            </div>
-
+        </div>
             <a href = "mailto:sujangalpottage@outlook.com; #contact">
                 Contact
                 <!-- <i class="fa-solid fa-address-book"></i> -->

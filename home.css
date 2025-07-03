@@ -1,8 +1,6 @@
 /* Link to animations so they can be accessed: */
 @import url("animations.css");
-@import url("nav.css");
-@import url("resume.css");
-@import url("styles.css");
+
 
 #Home {
     display: flex;

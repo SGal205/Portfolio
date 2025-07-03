@@ -16,9 +16,7 @@ body.page-loaded * {
 /* ================================================================================================ */
 
 @import url("animations.css");
-@import url("nav.css");
-@import url("resume.css");
-@import url("home.css");
+
 
 html {
     scroll-behavior: smooth;
