@@ -91,9 +91,10 @@
     box-shadow: none !important;
 }
 
-@media (max-width: 930px) {
+@media (max-width: 500px) {
     .Navbar {
         justify-content: center;
+        align-items: center;
     }
     .Navbar a {
         float: none;
