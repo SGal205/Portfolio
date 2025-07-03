@@ -77,7 +77,7 @@
 .highlight {
     padding: 0 0.5vw; /* Adds padding to the highlighted text for better visibility */
     animation: highlight 0.5s ease-in-out forwards;
-    animation-delay: 1s;
+    animation-delay: 1.5s;
     border-radius: 10px; /* Adds rounded corners to the highlighted text */
 }
 
