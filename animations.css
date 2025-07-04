@@ -24,6 +24,28 @@
   }
 }
 
+@keyframes focusToBlur{
+  0% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  30% {
+    opacity: 0.8;
+    filter: blur(1px);
+    transform: scale(1.005);
+  }
+  70% {
+    opacity: 0.3;
+    filter: blur(5px);
+    transform: scale(1.01);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(1.02);
+  }
+}
 /* For landing page highlight effect: */
 @keyframes highlight {
   from {

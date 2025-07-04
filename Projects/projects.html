@@ -6,6 +6,7 @@
 
         <link rel="stylesheet" href="../navbar.css"> 
         <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../animations.css">
         <link rel="stylesheet" href="project_style.css">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,13 +26,10 @@
                 <i class="fa fa-home"></i>
             </a>
         
-            <div style = "color: rgb(0, 0, 0); width: 90%; text-align: justify; align-items: center; margin-top: calc(5vw + 34px); font-size: 16px;"> These projects represent my favorite kind of problem-solving entailing blending code, mechanics, and design into practical systems. Each tile opens a focused case study showing how I approach challenges, whether it's tuning a control loop or crafting a smooth UI. Click on any to explore. </div>
+            <div style = "color: rgb(0, 0, 0); width: 90%; text-align: center; align-items: center; margin-top: calc(5vw + 34px); font-size: 16px; transition: blurToFocus 0.2s ease-in-out"> <hr> These projects represent my favorite kind of problem-solving entailing blending code, mechanics, and design into practical systems. Each tile opens a focused case study showing how I approach challenges, whether it's tuning a control loop or crafting a smooth UI. Click on any to explore. </div>
         
 
-        <!-- <div id = "top">
-            <p> hello</p>
-        </div>
-         -->
+  
         <div id="filterSelect">
             <button class="btn active" onclick="filterSelection('all')" style = "border-radius: 15px 0px 0px 15px;"> Show all</button>
             <button class="btn" onclick="filterSelection('contsys')" > Control Systems & Modelling</button>
@@ -77,7 +75,7 @@
                     
                 </a> 
 
-                <div class="project embsys software" style = "background-image: url(fsm.png);">
+                <a class="project embsys software" style = "background-image: url(fsm.png);">
                     <div class = "title" >
                         Measuring performance of ATmega328P ADC
                     </div>
@@ -95,9 +93,9 @@
                     </div>
                     <div class = "overlay">
                     </div>
-                </div> 
+                </a> 
 
-                <div class="project contsys software" style = "background-image: url(dc.png);">
+                <a class="project contsys software" style = "background-image: url(dc.png);">
                     <div class = "title" >
                         Design of Drone positioning control loop
                     </div>
@@ -115,9 +113,9 @@
                     </div>
                     <div class = "overlay">
                     </div>
-                </div> 
+                </a> 
 
-                <div class="project software" style = "background-image: url('vr.png');">
+                <a class="project software" style = "background-image: url('vr.png');">
                     <div class = "title" >
                         Command line vehicle rental interface
                     </div>
@@ -135,9 +133,9 @@
                     </div>
                     <div class = "overlay">
                     </div>
-                </div> 
+                </a> 
 
-                <div class="project mechdes" style = "background-image: url('gr.png');">
+                <a class="project mechdes" style = "background-image: url('gr.png');">
                     <div class = "title">
                         Gear Reducer module for conveyor system
                     </div>
@@ -152,9 +150,9 @@
                     </div>
                     <div class = "overlay">
                     </div>
-                </div> 
+                </a> 
                 
-                <div class="project embsys" style = "background-image: url(sh.png)">
+                <a class="project embsys" style = "background-image: url(sh.png);">
                     <div class = "title">
                         Smart home and IOT design for developing countries
                     </div>
@@ -169,9 +167,9 @@
                     </div>
                     <div class = "overlay">
                     </div>
-                </div> 
+                </a> 
 
-                <div class="project embsys contsys software" style = "background-image: url(vex.png)">
+                <a class="project embsys contsys software" style = "background-image: url(vex.png);">
                     <div class = "title">
                         PID control of vex robot to streamline warehouse navigation
                     </div>
@@ -189,9 +187,9 @@
                     </div>
                     <div class = "overlay">
                     </div>
-                </div> 
+                </a> 
 
-                <div class="project software" style = "background-image: url(wd2.png)">
+                <a class="project software" style = "background-image: url(wd2.png);">
                     <div class = "title">
                         Pesonal webpage design
                     </div>
@@ -206,9 +204,9 @@
                     </div>
                     <div class = "overlay">
                     </div>
-                </div> 
+                </a> 
 
-                <div class="project mechdes" style = "background-image: url(bm.png);">
+                <a class="project mechdes" style = "background-image: url(bm.png);">
                     <div class = "title">
                         Brushless motor assembly
                     </div>
@@ -229,7 +227,7 @@
                     </div>
                     <div class = "overlay">
                     </div>
-                </div> 
+                </a> 
 
                 <!-- <div class="project mechdes">
                     <div class = "title">
@@ -294,7 +292,7 @@
         </div>
 
         <p style="font-size: 0.85rem; opacity: 0.6; padding: 2.5w 5vw; position: center;">
-             *Thumbnail visuals conceptually enhanced via AI. Real builds featured in project detail pages.
+             *Thumbnail visuals produced via AI. Real builds featured in project detail pages.
         </p>       
         <footer>
             <p style = "color:rgb(162, 162, 162); font-size: 12px; text-align: center; padding: 2vw;" >© 2024 Sujan Galpottage | All rights reserved.<br>Last updated: July 4, 2025 </p>
@@ -305,17 +303,83 @@
     
 <!-- JAVASCRIPT -->
  <!-- ======================================================================================= -->
+
+    <script>
+            // This script pauses all animations until the page is fully loaded
+            // You can safely ignore this section - it just controls when animations start
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                // PREVENT AUTO-SCROLLING ON LOAD
+                window.scrollTo(0, 0);
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+                
+                // Add a class to body to indicate page is loading
+                document.body.classList.add('page-loading');
+                
+                // Function to start all animations
+                function startAnimations() {
+                    // Keep page at top when starting animations
+                    window.scrollTo(0, 0);
+                    document.body.classList.remove('page-loading');
+                    document.body.classList.add('page-loaded');
+                    console.log('Page fully loaded - animations started!');
+                }
+                
+                // Wait for everything to load completely
+                window.addEventListener('load', function() {
+                    // Keep page at top
+                    window.scrollTo(0, 0);
+                    // Small delay to ensure everything is truly ready
+                    setTimeout(function() {
+                        startAnimations();
+                    }, 300);
+                });
+                
+                // Backup: Start animations after 3 seconds no matter what
+                setTimeout(function() {
+                    if (document.body.classList.contains('page-loading')) {
+                        startAnimations();
+                        console.log('Backup timer: Starting animations');
+                    }
+                }, 3000);
+                
+                // Prevent scrolling during page load
+                window.addEventListener('scroll', function() {
+                    if (document.body.classList.contains('page-loading')) {
+                        window.scrollTo(0, 0);
+                    }
+                });
+            });
+        </script>
+
 <script>
-    filterSelection("all")
+    // Delay the initial filter to allow for staggered animation
+    setTimeout(function() {
+        filterSelection("all");
+    }, 100);
     function filterSelection(c) {
     var x, i;
     x = document.getElementsByClassName("project");
     if (c == "all") c = "";
-    // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+    
+    // First, hide all elements to reset animations
     for (i = 0; i < x.length; i++) {
         w3RemoveClass(x[i], "show");
-        if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
     }
+    
+    // Wait a brief moment, then show the filtered elements (this resets the animation)
+    setTimeout(function() {
+        var visibleIndex = 0; // Counter for visible elements
+        for (i = 0; i < x.length; i++) {
+            if (x[i].className.indexOf(c) > -1) {
+                // Set animation delay based on visible order (not original order)
+                x[i].style.animationDelay = (0.1 + visibleIndex * 0.1) + "s";
+                w3AddClass(x[i], "show");
+                visibleIndex++;
+            }
+        }
+    }, 50);
     }
 
     // Mobile dropdown filter function

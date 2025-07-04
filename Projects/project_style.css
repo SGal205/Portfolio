@@ -1,3 +1,7 @@
+/* Link in animations.css */  
+/* ================================================================================================ */
+@import url("animations.css");
+
 * {
     /* Asterisk is a UNIVERSAL selector targetting every single element on the page */
     box-sizing: border-box;
@@ -36,6 +40,7 @@ body {
     margin: 2.5vw;
     min-width: 15px;
     z-index: 999;
+    animation: slideD 0.3s ease-in-out;
     
 
 }
@@ -87,6 +92,7 @@ body {
   margin: 2.5vw 2.5vw 0 2.5vw; 
   /* Top margin calculated to be 2.5vw below home button by default */
   padding: 0;
+  position: relative;
 }
 
 .project {
@@ -158,7 +164,7 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(165, 165, 165, 0.35);
+    background-color: rgba(104, 104, 104, 0.35);
     border-radius: 15px;
 }
 
@@ -168,7 +174,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  opacity: 0;
+  animation: blurToFocus 1s ease-out forwards;
 }
+
+
 
 
 
