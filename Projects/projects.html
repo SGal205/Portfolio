@@ -25,33 +25,45 @@
                 <i class="fa fa-home"></i>
             </a>
         
+            <div style = "color: rgb(0, 0, 0); width: 90%; text-align: justify; align-items: center; margin-top: calc(5vw + 34px); font-size: 16px;"> These projects represent my favorite kind of problem-solving entailing blending code, mechanics, and design into practical systems. Each tile opens a focused case study showing how I approach challenges, whether it's tuning a control loop or crafting a smooth UI. Click on any to explore. </div>
+        
 
         <!-- <div id = "top">
             <p> hello</p>
         </div>
          -->
         <div id="filterSelect">
-            <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-            <button class="btn" onclick="filterSelection('contsys')"> Control Systems & Modelling</button>
-            <button class="btn" onclick="filterSelection('embiot')"> Embedded Systems</button>
+            <button class="btn active" onclick="filterSelection('all')" style = "border-radius: 15px 0px 0px 15px;"> Show all</button>
+            <button class="btn" onclick="filterSelection('contsys')" > Control Systems & Modelling</button>
+            <button class="btn" onclick="filterSelection('embsys')"> Embedded Systems</button>
             <button class="btn" onclick="filterSelection('mechdes')"> Mechanical design</button>
-            <button class="btn" onclick="filterSelection('software')"> Software & Simulation</button>
+            <button class="btn" onclick="filterSelection('software')" style = "border-radius: 0px 15px 15px 0px;"> Software & Simulation</button>
         </div>
 
-        
-            
+        <!-- Dropdown for mobile -->
+        <div id="filterDropdown">
+            <select id="filterSelect-mobile" onchange="filterSelectionMobile(this.value)">
+                <option value="all">Show all</option>
+                <option value="contsys">Control Systems & Modelling</option>
+                <option value="embsys">Embedded Systems</option>
+                <option value="mechdes">Mechanical design</option>
+                <option value="software">Software & Simulation</option>
+            </select>
+        </div>
+
+                    
 
 <!-- The filterable elements. Note that some have multiple class names (this can be used if they belong to multiple categories) -->
         <div class="container">
 
-                <a class=" project contsys" href = "../index.html">
-                    <div class = "title" style = "background-image: url('ps.png');">
+                <a class=" project software" href = "../index.html" style = "background-image: url('ps.png');">
+                    <div class = "title" >
                         Pitch Shifter using C++ multithreading
                     </div>
                     <div class = "blurb">
                         Skills:  
                         <div class = "skills">
-                            multithreading
+                            Multithreading
                         </div>
                         <div class = "skills">
                             C++
@@ -65,107 +77,161 @@
                     
                 </a> 
 
-                <div class="project embiot contsys">
-                    <div class = "title" style = "background-image: url(fsm.png);">
+                <div class="project embsys software" style = "background-image: url(fsm.png);">
+                    <div class = "title" >
                         Measuring performance of ATmega328P ADC
                     </div>
                     <div class = "blurb">
                         Skills:
                         <div class = "skills">
-                            OOP
+                            Low-Level C
                         </div>
                         <div class = "skills">
-                            OOP
+                            Real Time Systems
                         </div>
                         <div class = "skills">
-                            OOP
+                            Embedded Systems
                         </div>
                     </div>
                     <div class = "overlay">
                     </div>
                 </div> 
 
-                <div class="project mechdes">
-                    <div class = "title" style = "background-image: url(dc.png);">
+                <div class="project contsys software" style = "background-image: url(dc.png);">
+                    <div class = "title" >
                         Design of Drone positioning control loop
                     </div>
                     <div class = "blurb">
                         Skills:
                         <div class = "skills">
-                            OOP
+                            Matlab
                         </div>
                         <div class = "skills">
-                            OOP
+                            Simulink
                         </div>
                         <div class = "skills">
-                            OOP
+                            PID control
                         </div>
                     </div>
                     <div class = "overlay">
                     </div>
                 </div> 
 
-                <div class="project software">
-                    <div class = "title" style = "background-image: url('vr.png');">
+                <div class="project software" style = "background-image: url('vr.png');">
+                    <div class = "title" >
                         Command line vehicle rental interface
                     </div>
                     <div class = "blurb">
                         Skills:
                         <div class = "skills">
-                            OOP
+                            C++
                         </div>
                         <div class = "skills">
                             OOP
                         </div>
                         <div class = "skills">
-                            OOP
+                            Inheritance
                         </div>
                     </div>
                     <div class = "overlay">
                     </div>
                 </div> 
 
-                <div class="project mechdes">
+                <div class="project mechdes" style = "background-image: url('gr.png');">
                     <div class = "title">
-                        Pitch Shifter using C++ multithreading
+                        Gear Reducer module for conveyor system
                     </div>
                     <div class = "blurb">
                         Skills:
                         <div class = "skills">
-                            OOP
+                            CAD
                         </div>
                         <div class = "skills">
-                            OOP
-                        </div>
-                        <div class = "skills">
-                            OOP
+                            Mechanical design
                         </div>
                     </div>
                     <div class = "overlay">
                     </div>
                 </div> 
                 
-                <div class="project mechdes">
+                <div class="project embsys" style = "background-image: url(sh.png)">
                     <div class = "title">
-                        Pitch Shifter using C++ multithreading<>
+                        Smart home and IOT design for developing countries
                     </div>
                     <div class = "blurb">
                         Skills:
                         <div class = "skills">
-                            OOP
+                            Embedded Systems
                         </div>
                         <div class = "skills">
-                            OOP
-                        </div>
-                        <div class = "skills">
-                            OOP
+                            Sensor integration
                         </div>
                     </div>
                     <div class = "overlay">
                     </div>
                 </div> 
 
-                <div class="project mechdes">
+                <div class="project embsys contsys software" style = "background-image: url(vex.png)">
+                    <div class = "title">
+                        PID control of vex robot to streamline warehouse navigation
+                    </div>
+                    <div class = "blurb">
+                        Skills:
+                        <div class = "skills">
+                            PID control
+                        </div>
+                        <div class = "skills">
+                            C / Vex Programming
+                        </div>
+                        <div class = "skills">
+                            Sensor integration
+                        </div>
+                    </div>
+                    <div class = "overlay">
+                    </div>
+                </div> 
+
+                <div class="project software" style = "background-image: url(wd2.png)">
+                    <div class = "title">
+                        Pesonal webpage design
+                    </div>
+                    <div class = "blurb">
+                        Skills:
+                        <div class = "skills">
+                            HTML
+                        </div>
+                        <div class = "skills">
+                            CSS
+                        </div>
+                    </div>
+                    <div class = "overlay">
+                    </div>
+                </div> 
+
+                <div class="project mechdes" style = "background-image: url(bm.png);">
+                    <div class = "title">
+                        Brushless motor assembly
+                    </div>
+                    <div class = "blurb">
+                        Skills:
+                        <div class = "skills">
+                            Mechanical design
+                        </div>
+                        <div class = "skills">
+                            Soldering
+                        </div>
+                        <div class = "skills">
+                            Machining
+                        </div>
+                        <div class = "skills">
+                            3D printing
+                        </div>
+                    </div>
+                    <div class = "overlay">
+                    </div>
+                </div> 
+
+                <!-- <div class="project mechdes">
                     <div class = "title">
                         Pitch Shifter using C++ multithreading
                     </div>
@@ -223,73 +289,15 @@
                     </div>
                     <div class = "overlay">
                     </div>
-                </div> 
-
-                <div class="project mechdes">
-                    <div class = "title">
-                        Pitch Shifter using C++ multithreading
-                    </div>
-                    <div class = "blurb">
-                        Skills:
-                        <div class = "skills">
-                            OOP
-                        </div>
-                        <div class = "skills">
-                            OOP
-                        </div>
-                        <div class = "skills">
-                            OOP
-                        </div>
-                    </div>
-                    <div class = "overlay">
-                    </div>
-                </div> 
-
-                <div class="project mechdes">
-                    <div class = "title">
-                        Pitch Shifter using C++ multithreading
-                    </div>
-                    <div class = "blurb">
-                        Skills:
-                        <div class = "skills">
-                            OOP
-                        </div>
-                        <div class = "skills">
-                            OOP
-                        </div>
-                        <div class = "skills">
-                            OOP
-                        </div>
-                    </div>
-                    <div class = "overlay">
-                    </div>
-                </div> 
-
-                <div class="project mechdes">
-                    <div class = "title">
-                        Pitch Shifter using C++ multithreading
-                    </div>
-                    <div class = "blurb">
-                        Skills:
-                        <div class = "skills">
-                            OOP
-                        </div>
-                        <div class = "skills">
-                            OOP
-                        </div>
-                        <div class = "skills">
-                            OOP
-                        </div>
-                    </div>
-                    <div class = "overlay">
-                    </div>
-                </div> 
+                </div>  -->
 
         </div>
 
-        
+        <p style="font-size: 0.85rem; opacity: 0.6; padding: 2.5w 5vw; position: center;">
+             *Thumbnail visuals conceptually enhanced via AI. Real builds featured in project detail pages.
+        </p>       
         <footer>
-            <p style = "color:rgb(162, 162, 162); text-align: center; padding: 2vw;" >© 2024 Sujan Galpottage | All rights reserved.<br>Last updated: July 1, 2025 </p>
+            <p style = "color:rgb(162, 162, 162); font-size: 12px; text-align: center; padding: 2vw;" >© 2024 Sujan Galpottage | All rights reserved.<br>Last updated: July 4, 2025 </p>
         </footer>
        
     </body>
@@ -308,6 +316,11 @@
         w3RemoveClass(x[i], "show");
         if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
     }
+    }
+
+    // Mobile dropdown filter function
+    function filterSelectionMobile(c) {
+        filterSelection(c);
     }
 
     // Show filtered elements
@@ -336,7 +349,7 @@
     }
 
     // Add active class to the current control button (highlight it)
-    var btnContainer = document.getElementById("myBtnContainer");
+    var btnContainer = document.getElementById("filterSelect");
     var btns = btnContainer.getElementsByClassName("btn");
     for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function() {
@@ -348,3 +361,4 @@
 </script>
 
  <!-- ======================================================================================= -->
+
