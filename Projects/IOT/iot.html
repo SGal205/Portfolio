@@ -69,7 +69,7 @@
             justify-content: center;
             margin: 0;
             padding: 0;   
-            background-color: #ffffff;            
+            background: linear-gradient(to right, #424242, #e0e0e0);            
         }
 
         #home {
@@ -88,14 +88,15 @@
         }
         
         .overview {
-            background-color: rgb(247,255,179);
             border-radius: 40px;
             min-width: 350px;
             max-width: 700px; /* Set a max-width for larger screens */
             flex: 1;
             padding: 20px 40px;
             margin: 0 5vw 10px 5vw;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+                        background: linear-gradient(to top, rgb(183, 198, 19), rgb(70, 77, 39));
+
         }
 
         .head2 {
@@ -123,7 +124,7 @@
             border-radius: 15px;
             overflow: hidden;
             font-size: 16px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
         }
       
         th, td {
@@ -133,12 +134,14 @@
         }
 
         th {
-            background-color: #c8c8c8;
+            /* background-color: #c8c8c8; */
+            background: linear-gradient(to top, rgb(183, 198, 19, 0.6), rgb(70, 77, 39, 0.5));
+            color: white;
             font-weight: 600;
         }
 
         td {
-            background-color: #f2f2f2;
+            background-color: rgb(255, 255, 255, 0.3);
         }
 
         /* Round the corner cells */
@@ -163,9 +166,9 @@
             margin-left: auto;
             margin-right: 5vw;
             padding: 20px 40px;
-            background-color: rgb(255, 255, 255);
+            background-color: rgb(255, 255, 255, 0.3);
             border-radius: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .responsive-iframe {
@@ -249,7 +252,7 @@
         </div>
 
        <div class = "technical">       
-            <p class = "head2" > 🔧 Technical implementation:</p>
+            <p class = "head2" >Technical implementation:</p>
 
             <!-- Component table -->
             <table class="table" style = "border-color: rgb(161, 161, 161) ;">
@@ -284,19 +287,19 @@
 
         <div class = "how-it-works">
         <p class = "head2">How it works:</p>
-        <p><span class = "head3">🚨 Detection:</span> NO<sub>2</sub>, PM2.5 Particles, CH<sub>4</sub>, CO</p>
-        <p class = "head3">💨 Filtration:</p>
+        <p><span class = "head3">Detection:</span> NO<sub>2</sub>, PM2.5 Particles, CH<sub>4</sub>, CO</p>
+        <p class = "head3">Filtration:</p>
         <ul>
             <li>PM2.5 + TiO<sub>2</sub> filters remove airborne pollutants</li>
             <li>12V brushless DC motor creates negative pressure to extract fumes</li>
         </ul>
-        <p class = "head3">📊 Monitoring:</p>
+        <p class = "head3">Monitoring:</p>
         <ul>
             <li>Fan speed auto-regulated via analogue Winsen gas sensor</li>
             <li>Wind speed sensor tracks airflow strength and alerts user with LED if airflow drops, indicating filter replacement</li>
             <li>N-Channel MOSFET used for efficient switching</li>
         </ul>
-        <p class = "head3">⚠️ Warning:</p>
+        <p class = "head3">Warning:</p>
         <ul>
             <li>Piezo buzzer activated when pollutants exceed safe levels</li>
             <li>LED indicators provide visual alerts</li>
