@@ -69,7 +69,9 @@
             justify-content: center;
             margin: 0;
             padding: 0;   
-            background: linear-gradient(to right, #424242, #e0e0e0);            
+            background: linear-gradient(to right, #090909, #696969);      
+            color: rgb(255, 255, 255);
+      
         }
 
         #home {
@@ -95,6 +97,7 @@
             padding: 20px 40px;
             margin: 0 5vw 10px 5vw;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            background: linear-gradient(to top, rgba(67, 67, 67, 0.8), rgba(181, 181, 181, 0.4));
                         /* background: linear-gradient(to top, rgb(183, 198, 19), rgb(70, 77, 39)); */
 
         }
@@ -128,20 +131,28 @@
         }
       
         th, td {
-            border: 1px solid #000000;
             padding: 20px;
             text-align: left;
         }
 
         th {
             /* background-color: #c8c8c8; */
-            background: linear-gradient(to top, rgb(183, 198, 19, 0.6), rgb(70, 77, 39, 0.5));
+            background: linear-gradient(to top, rgb(183, 198, 19, 0.9), rgba(202, 248, 0, 0.3));
             color: white;
-            font-weight: 600;
+            font-weight: 700;
+
         }
 
         td {
-            background-color: rgb(255, 255, 255, 0.3);
+
+            background-color: rgba(255, 255, 255, 0.3);
+            /* color: rgb(57, 57, 57); */
+            font-weight: 500;
+        }
+
+        th:not(:last-child), td:not(:last-child) {
+            /* Add a right border to all cells except the last column */
+        border-right: 2px solid rgba(0, 0, 0, 0.1);
         }
 
         /* Round the corner cells */
@@ -169,6 +180,7 @@
             background-color: rgb(255, 255, 255, 0.3);
             border-radius: 15px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            
         }
 
         .responsive-iframe {
@@ -197,7 +209,8 @@
             font-weight: 600;
         }
 
-        @media (max-width: 768px) {
+        @media (hover: none) and (pointer: coarse){
+            /* This catches ALL touch devices: phones, tablets, iPads */
             .responsive-iframe {
                 display: none;
             }
