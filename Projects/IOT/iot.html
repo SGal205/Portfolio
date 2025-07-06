@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- JAVASCRIPT -->
+ <!-- ======================================================================================= -->
+
+    <script>
+            // This script pauses all animations until the page is fully loaded
+            // You can safely ignore this section - it just controls when animations start
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                // PREVENT AUTO-SCROLLING ON LOAD
+                window.scrollTo(0, 0);
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+                
+                // Add a class to body to indicate page is loading
+                document.body.classList.add('page-loading');
+                
+                // Function to start all animations
+                function startAnimations() {
+                    // Keep page at top when starting animations
+                    window.scrollTo(0, 0);
+                    document.body.classList.remove('page-loading');
+                    document.body.classList.add('page-loaded');
+                    console.log('Page fully loaded - animations started!');
+                }
+                
+                // Wait for everything to load completely
+                window.addEventListener('load', function() {
+                    // Keep page at top
+                    window.scrollTo(0, 0);
+                    // Small delay to ensure everything is truly ready
+                    setTimeout(function() {
+                        startAnimations();
+                    }, 300);
+                });
+                
+                // Backup: Start animations after 3 seconds no matter what
+                setTimeout(function() {
+                    if (document.body.classList.contains('page-loading')) {
+                        startAnimations();
+                        console.log('Backup timer: Starting animations');
+                    }
+                }, 3000);
+                
+                // Prevent scrolling during page load
+                window.addEventListener('scroll', function() {
+                    if (document.body.classList.contains('page-loading')) {
+                        window.scrollTo(0, 0);
+                    }
+                });
+            });
+    </script>
+    <!-- ======================================================================================= -->
+   
+    <!-- STYLESHEET -->
+     <style>
+
+            * {
+        /* Asterisk is a UNIVERSAL selector targetting every single element on the page */
+        box-sizing: border-box;
+        /* border-box ensures padding and border are included in sizing of element NOT MARGIN  */   
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+            padding: 0;   
+            background-color: #ffffff;            
+        }
+
+        #home {
+            position: absolute;
+            top: 13px;
+            left: 2.5vw;
+            padding: 10px;
+            color: rgb(154, 167, 13);
+            font-size: 30px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        h1 {
+           text-align: center;
+        }
+        
+        .overview {
+            background-color: rgb(247,255,179);
+            border-radius: 40px;
+            min-width: 350px;
+            max-width: 700px; /* Set a max-width for larger screens */
+            flex: 1;
+            padding: 20px 40px;
+            margin: 0 5vw 10px 5vw;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .head2 {
+            font-size: 1.5em;
+             font-weight: 800;
+        }
+
+        .head3 {
+            font-size: 1.25em;
+             font-weight: 700;
+        }
+
+        .technical {
+            width: 90%;
+            margin-left: auto;
+            margin-right: 5vw;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+
+        .technical .table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        }
+      
+        th, td {
+            border: 1px solid #000000;
+            padding: 20px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #c8c8c8;
+            font-weight: 600;
+        }
+
+        td {
+            background-color: #f2f2f2;
+        }
+
+        /* Round the corner cells */
+        .table th:first-child {
+            border-top-left-radius: 15px;
+        }
+        
+        .table th:last-child {
+            border-top-right-radius: 15px;
+        }
+        
+        .table tr:last-child td:first-child {
+            border-bottom-left-radius: 15px;
+        }
+        
+        .table tr:last-child td:last-child {
+            border-bottom-right-radius: 15px;
+        }
+
+        .how-it-works {
+            width: 90%;
+            margin-left: auto;
+            margin-right: 5vw;
+            padding: 20px 40px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .responsive-iframe {
+            width: 100%;
+            height: 550px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .mobile-fallback {
+            display: none;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .mobile-warning {
+            display: none;
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ffeaa7;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .responsive-iframe {
+                display: none;
+            }
+            .mobile-fallback {
+                display: block;
+            }
+            .mobile-warning {
+                display: block;
+            }
+        }
+
+        
+
+
+        /*ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }   */
+    </style>
+    <!-- ======================================================================================= -->
+
+    <!-- HEAD -->
+    <!-- ======================================================================================= -->
+    <head>
+        
+        <title>Smart Home and IOT Design</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- MONTSERRAT FONT: -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <!-- ICON PACK: -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Icon pack  -->
+        <script src="https://kit.fontawesome.com/6277525465.js" crossorigin="anonymous"></script>
+
+    </head>
+    <!-- ======================================================================================= -->
+
+    <body>
+        <a id = "home" href = "../projects.html">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        <h1>Smart Homes That Don't Explode: Engineering for Real-World Crises <hr></h1>
+
+        <div style = "display: flex; flex-direction: row; flex-wrap: wrap; width: 100%; justify-content: center;">
+            <div class = "overview">             
+                <p class = "head2">Overview:</p>
+                <p>Mainstream SMART home tech caters to luxury living in the developed west - not to developing nations. While Western homes get voice-controlled lights, Sri Lankans face deadly risks from substandard gas imports - like the 2021 gas canister explosion crisis that rocked households nationwide. Drawing on my own Sri Lankan roots, I embraced the challenge of developing a SMART home package for the typical Sri Lankan home.</p>
+            </div>
+            <div style = "min-width: 350px; flex: 1; height: 300px; background-image: url(house.png); background-size: contain; background-position: left center; background-repeat: no-repeat;"></div>
+        </div>
+
+       <div class = "technical">       
+            <p class = "head2" > 🔧 Technical implementation:</p>
+
+            <!-- Component table -->
+            <table class="table" style = "border-color: rgb(161, 161, 161) ;">
+                <tr>
+                    <th>System</th>
+                    <th>Electric Components</th>
+                    <th>Sensors</th>
+                    <th>Actuators</th>            
+                </tr>
+                <tr>
+                    <td>Air Purification and Warning System</td>
+                    <td>
+                        <ul>
+                            <li>Arduino Microcontroller</li>
+                            <li>Full-bridge rectifier & Transformer</li>
+                            (Mains voltage needs to be converted to DC and within 5V for the microcontroller)
+                            <li>LEDs, N-Channel MOSFET</li>
+                        </ul>
+                    </td>
+                    <td>Winsen Gas Sensor</td>
+                    <td>
+                        <ul>
+                            <li>Piezo Buzzer</li>
+                            <li>Brushless 12V DC motor (Fan)</li>
+                            Fans fixed with PM2.5 and TiO<sub>2</sub> filters
+                        </ul>
+                    </td>   
+                </tr>
+            </table>
+
+        </div>
+
+        <div class = "how-it-works">
+        <p class = "head2">How it works:</p>
+        <p><span class = "head3">🚨 Detection:</span> NO<sub>2</sub>, PM2.5 Particles, CH<sub>4</sub>, CO</p>
+        <p class = "head3">💨 Filtration:</p>
+        <ul>
+            <li>PM2.5 + TiO<sub>2</sub> filters remove airborne pollutants</li>
+            <li>12V brushless DC motor creates negative pressure to extract fumes</li>
+        </ul>
+        <p class = "head3">📊 Monitoring:</p>
+        <ul>
+            <li>Fan speed auto-regulated via analogue Winsen gas sensor</li>
+            <li>Wind speed sensor tracks airflow strength and alerts user with LED if airflow drops, indicating filter replacement</li>
+            <li>N-Channel MOSFET used for efficient switching</li>
+        </ul>
+        <p class = "head3">⚠️ Warning:</p>
+        <ul>
+            <li>Piezo buzzer activated when pollutants exceed safe levels</li>
+            <li>LED indicators provide visual alerts</li>
+        </ul>
+        
+        <p>I prototyped and tested both the hardware and code required for this concept on TinkerCAD</p>
+        <!-- Mobile fallback image (shows on mobile devices) -->
+        <img src="tc.png" alt="Smart Home Design" class="mobile-fallback">
+        
+        <!-- Mobile warning message (shows on mobile devices only) -->
+        <div class="mobile-warning">
+            📱 <strong>Mobile users:</strong> Please use a desktop or laptop device to view the interactive Tinkercad simulation.<br>
+            <a href="https://www.tinkercad.com/things/8qOFSoAeVlU" target="_blank" style="color: #856404; text-decoration: underline;">
+                Or click here to open the simulation in a new tab
+            </a>
+        </div>
+        
+        <!-- Interactive Tinkercad simulation (shows on desktop devices) -->
+        <iframe src="https://www.tinkercad.com/embed/8qOFSoAeVlU?editbtn=1" 
+                class="responsive-iframe"
+                frameborder="0" marginwidth="0" marginheight="0" scrolling="no">
+        </iframe>
+        </div>
+
+        <footer>
+            <p style = "color:rgb(162, 162, 162); text-align: center; padding: 2vw; margin: 0; font-size: 12px;" >© 2024 Sujan Galpottage | All rights reserved.<br>Last updated: July 4, 2025</p>
+        </footer>
+    </body>
+
+</html>
