@@ -1,6 +1,3 @@
-
-
-
 @keyframes blurToFocus {
   0% {
     opacity: 0;
@@ -70,6 +67,19 @@
   }
 }
 
+@keyframes slideU {
+  from {
+    transform: translateY(10vh);
+    opacity: 0;
+  }
+  to {
+    /* 10vh is 10 vh up */
+    transform: translateY(0Vh);
+    opacity: 1;
+  }
+}
+
+
 @keyframes slideL{
   from {
     transform: translateX(25vw);
@@ -89,5 +99,228 @@
   to {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+
+/* ======================================================================================= */
+/* IOT & SMART HOME THEMED ANIMATIONS */
+/* ======================================================================================= */
+
+/* LED blinking effect for status indicators */
+@keyframes ledBlink {
+  0%, 50% { 
+    opacity: 1; 
+    box-shadow: 0 0 5px currentColor;
+  }
+  25%, 75% { 
+    opacity: 0.3; 
+    box-shadow: 0 0 15px currentColor;
+  }
+}
+
+/* Sensor scanning animation */
+@keyframes sensorScan {
+  0% { 
+    transform: translateX(-100%); 
+    opacity: 0; 
+  }
+  50% { 
+    opacity: 1; 
+    box-shadow: 0 0 20px rgba(154, 167, 13, 0.7);
+  }
+  100% { 
+    transform: translateX(100%); 
+    opacity: 0; 
+  }
+}
+
+/* Gas detection ripple effect */
+@keyframes gasDetected {
+  0% { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+  50% { 
+    transform: scale(1.1); 
+    opacity: 0.8;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+  }
+  100% { 
+    transform: scale(1.2); 
+    opacity: 0; 
+  }
+}
+
+/* Fan rotation animation */
+@keyframes fanRotate {
+  from { 
+    transform: rotate(0deg); 
+  }
+  to { 
+    transform: rotate(360deg); 
+  }
+}
+
+/* Data transmission pulse */
+@keyframes dataPulse {
+  0%, 100% { 
+    opacity: 0.4; 
+    transform: scale(0.95); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(154, 167, 13, 0.6);
+  }
+}
+
+/* Smart home "breathing" effect */
+@keyframes smartBreathe {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.8;
+  }
+  50% { 
+    transform: scale(1.02); 
+    opacity: 1;
+    filter: brightness(1.1);
+  }
+}
+
+/* Warning pulse for dangerous gas levels */
+@keyframes warningPulse {
+  0%, 100% { 
+    background-color: rgba(255, 0, 0, 0.1);
+    transform: scale(1);
+  }
+  50% { 
+    background-color: rgba(255, 0, 0, 0.3);
+    transform: scale(1.03);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+  }
+}
+
+/* Circuit board glow effect */
+@keyframes circuitGlow {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(154, 167, 13, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(154, 167, 13, 0.7), 
+                0 0 30px rgba(154, 167, 13, 0.4);
+  }
+}
+
+/* Floating particles animation (for air quality) */
+@keyframes floatingParticles {
+  0% { 
+    transform: translateY(0) translateX(0) rotate(0deg); 
+    opacity: 0.8;
+  }
+  25% { 
+    transform: translateY(-10px) translateX(5px) rotate(90deg); 
+    opacity: 1;
+  }
+  50% { 
+    transform: translateY(-20px) translateX(-5px) rotate(180deg); 
+    opacity: 0.6;
+  }
+  75% { 
+    transform: translateY(-10px) translateX(10px) rotate(270deg); 
+    opacity: 0.8;
+  }
+  100% { 
+    transform: translateY(0) translateX(0) rotate(360deg); 
+    opacity: 0.4;
+  }
+}
+
+/* Arduino connection animation */
+@keyframes connectionEstablished {
+  0% { 
+    border-color: transparent;
+    transform: scale(1);
+  }
+  50% { 
+    border-color: rgba(154, 167, 13, 0.8);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(154, 167, 13, 0.4);
+  }
+  100% { 
+    border-color: rgba(154, 167, 13, 0.4);
+    transform: scale(1);
+  }
+}
+
+/* Table row highlight on hover */
+@keyframes tableRowHighlight {
+  0% { 
+    background-color: inherit;
+    transform: translateX(0);
+  }
+  100% { 
+    background-color: rgba(154, 167, 13, 0.1);
+    transform: translateX(5px);
+  }
+}
+
+/* Download button attention grabber */
+@keyframes downloadBounce {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg);
+  }
+  25% { 
+    transform: scale(1.1) rotate(-2deg);
+  }
+  50% { 
+    transform: scale(1.15) rotate(0deg);
+    box-shadow: 0 0 15px rgba(154, 167, 13, 0.6);
+  }
+  75% { 
+    transform: scale(1.1) rotate(2deg);
+  }
+}
+
+/* Smart home status indicator */
+@keyframes systemStatus {
+  0% { 
+    border-left: 3px solid transparent;
+  }
+  33% { 
+    border-left: 3px solid rgba(255, 165, 0, 0.8); /* Orange - monitoring */
+  }
+  66% { 
+    border-left: 3px solid rgba(154, 167, 13, 0.8); /* Green - safe */
+  }
+  100% { 
+    border-left: 3px solid rgba(0, 255, 0, 0.8); /* Bright green - optimal */
+  }
+}
+
+/* Green pulsing detection animation for navbar */
+@keyframes detection {
+  0% { 
+    box-shadow: 0 0 5px rgba(154, 167, 13, 0.3);
+    border-bottom: 2px solid transparent;
+  }
+  25% { 
+    box-shadow: 0 0 15px rgba(154, 167, 13, 0.5), 
+                0 0 25px rgba(154, 167, 13, 0.2);
+    border-bottom: 2px solid rgba(154, 167, 13, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(154, 167, 13, 0.7), 
+                0 0 35px rgba(154, 167, 13, 0.3),
+                0 0 45px rgba(154, 167, 13, 0.1);
+    border-bottom: 2px solid rgba(154, 167, 13, 0.6);
+  }
+  75% { 
+    box-shadow: 0 0 15px rgba(154, 167, 13, 0.5), 
+                0 0 25px rgba(154, 167, 13, 0.2);
+    border-bottom: 2px solid rgba(154, 167, 13, 0.4);
+  }
+  100% { 
+    box-shadow: 0 0 5px rgba(154, 167, 13, 0.3);
+    border-bottom: 2px solid transparent;
   }
 }
