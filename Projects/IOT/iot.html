@@ -57,6 +57,7 @@
      <style>
 
             * {
+
         /* Asterisk is a UNIVERSAL selector targetting every single element on the page */
         box-sizing: border-box;
         /* border-box ensures padding and border are included in sizing of element NOT MARGIN  */   
@@ -69,20 +70,26 @@
             justify-content: center;
             margin: 0;
             padding: 0;   
-            background: linear-gradient(to right, #090909, #696969);      
-            color: rgb(255, 255, 255);
+            background: linear-gradient(to right, #adadad, #ffffff);      
+            color: rgb(0, 0, 0);
       
         }
 
+        .menu {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+
         #home {
-            position: absolute;
-            top: 13px;
-            left: 2.5vw;
-            padding: 10px;
+            /* position: absolute; */
+            /* top: 13px; */
+            /* left: 2.5vw; */
+            /* padding: 10px; */
             color: rgb(154, 167, 13);
             font-size: 30px;
-            border-radius: 5px;
-            z-index: 1000;
+            /* border-radius: 5px;
+            z-index: 1000; */
         }
 
         h1 {
@@ -90,15 +97,15 @@
         }
         
         .overview {
-            border-radius: 40px;
-            min-width: 350px;
+            min-width: 300px;
             max-width: 700px; /* Set a max-width for larger screens */
             flex: 1;
-            padding: 20px 40px;
-            margin: 0 5vw 10px 5vw;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-            background: linear-gradient(to top, rgba(67, 67, 67, 0.8), rgba(181, 181, 181, 0.4));
+            margin: 0 7.5vw 0 7.5vw;
+            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); */
+            color: rgb(255, 255, 255);
+            /* background: linear-gradient(to top, rgba(67, 67, 67, 0.8), rgba(213, 212, 212, 0.4)); */
                         /* background: linear-gradient(to top, rgb(183, 198, 19), rgb(70, 77, 39)); */
+            /* background-color: rgba(238, 238, 238, 0.6); */
 
         }
 
@@ -111,43 +118,39 @@
             font-size: 1.25em;
              font-weight: 700;
         }
-
         .technical {
-            width: 90%;
-            margin-left: auto;
-            margin-right: 5vw;
-            overflow-x: auto;
-            padding: 20px 0;
-        }
-
-        .technical .table {
             width: 100%;
+            overflow: auto;
+            padding: 10px 0px;
+        }
+        .technical .table {
+            width: 85%;
+            margin-left: 7.5%;
+            margin-right: 7.5%;
+            overflow: hidden;
             border-collapse: separate;
             border-spacing: 0;
             border-radius: 15px;
-            overflow: hidden;
             font-size: 16px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-        }
-      
-        th, td {
-            padding: 20px;
+            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); */
             text-align: left;
         }
+    
 
         th {
-            /* background-color: #c8c8c8; */
-            background: linear-gradient(to top, rgb(183, 198, 19, 0.9), rgba(202, 248, 0, 0.3));
+            background-color: #8a8a8a;
+            /* background: linear-gradient(to top, rgb(183, 198, 19, 0.9), rgba(202, 248, 0, 0.3)); */
             color: white;
             font-weight: 700;
+            padding: 20px;
 
         }
 
         td {
 
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(238, 238, 238, 0.6);
+            padding: 10px;
             /* color: rgb(57, 57, 57); */
-            font-weight: 500;
         }
 
         th:not(:last-child), td:not(:last-child) {
@@ -173,13 +176,13 @@
         }
 
         .how-it-works {
-            width: 90%;
-            margin-left: auto;
-            margin-right: 5vw;
-            padding: 20px 40px;
-            background-color: rgb(255, 255, 255, 0.3);
+            width: 85%;
+            margin-left: 7.5%;
+            margin-right: 7.5%;
+            padding: 20px 0px;
+            /* background-color: rgba(219, 219, 219, 0.7); */
             border-radius: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);    */
             
         }
 
@@ -222,6 +225,7 @@
             }
         }
 
+
         
 
 
@@ -251,24 +255,35 @@
     <!-- ======================================================================================= -->
 
     <body>
-        <a id = "home" href = "../projects.html">
+        
+        <div class = "menu" style = "background-color: rgba(255, 255, 255, 0.75); display: flex; flex-direction: row; text-align: center; justify-content: center; align-items: center; width: 100%; position: fixed; top: 0; left: 0; z-index: 1000; padding: 10px 70px 10px 70px ;">
+            <!-- Home button -->
+        <a id = "home" href = "../projects.html" style = "position: absolute; left: 0; top: 50%; transform: translateY(-50%); margin-left: 5%;">
                 <i class="fa-solid fa-arrow-left"></i>
-            </a>
-        <h1>Smart Homes That Don't Explode: Engineering for Real-World Crises <hr></h1>
+        </a>
 
-        <div style = "display: flex; flex-direction: row; flex-wrap: wrap; width: 100%; justify-content: center;">
-            <div class = "overview">             
+            <!-- top: 50% ➝ moves the top of the icon to the middle of the parent.
+                 translateY(-50%) ➝ pulls it upward by half of its own height. -->
+
+        <span style="font-weight: 400;">
+        Smart Homes That Don't Explode: Engineering for Real-World Crises <br>
+        </span>
+        </div>
+
+
+        <div style = "position: relative; top: 0px; display: flex; flex-direction: row; flex-wrap: wrap; width: 100%; justify-content: center; background-color: black;  padding-top: 80px;">
+
+            <div class = "overview">
                 <p class = "head2">Overview:</p>
                 <p>Mainstream SMART home tech caters to luxury living in the developed west - not to developing nations. While Western homes get voice-controlled lights, Sri Lankans face deadly risks from substandard gas imports - like the 2021 gas canister explosion crisis that rocked households nationwide. Drawing on my own Sri Lankan roots, I embraced the challenge of developing a SMART home package for the typical Sri Lankan home.</p>
             </div>
-            <div style = "min-width: 350px; flex: 1; height: 300px; background-image: url(house.png); background-size: contain; background-position: left center; background-repeat: no-repeat;"></div>
+            <div style = "min-width: 300px; flex: 1; height: 300px; background-image: url(house.png); background-size: contain; background-position: right center; background-repeat: no-repeat;"></div>
         </div>
 
-       <div class = "technical">       
-            <p class = "head2" >Technical implementation:</p>
-
+        <div class = "technical">
+            <p class = "head2" style = "margin-left: 7.5%;">Technical implementation:</p>
             <!-- Component table -->
-            <table class="table" style = "border-color: rgb(161, 161, 161) ;">
+            <table class="table" style = "border-color: rgb(161, 161, 161);">
                 <tr>
                     <th>System</th>
                     <th>Electric Components</th>
@@ -295,8 +310,9 @@
                     </td>   
                 </tr>
             </table>
-
         </div>
+        
+
 
         <div class = "how-it-works">
         <p class = "head2">How it works:</p>
@@ -317,13 +333,16 @@
             <li>Piezo buzzer activated when pollutants exceed safe levels</li>
             <li>LED indicators provide visual alerts</li>
         </ul>
+        <br>
+        <br>
         
-        <p>I prototyped and tested both the hardware and code required for this concept on TinkerCAD</p>
+        <p class = "head2">Final Prototype:</p>
+        <p>I prototyped and tested both the hardware and code required for this concept on TinkerCAD - code can be viewed on full report too:</p>
         <!-- Mobile fallback image (shows on mobile devices) -->
         <img src="tc.png" alt="Smart Home Design" class="mobile-fallback">
         
         <!-- Mobile warning message (shows on mobile devices only) -->
-        <div class="mobile-warning">
+        <div class="mobile-warning" style = "margin-top: 15px;">
             📱 <strong>Mobile users:</strong> Please use a desktop or laptop device to view the interactive Tinkercad simulation.<br>
             <a href="https://www.tinkercad.com/things/8qOFSoAeVlU" target="_blank" style="color: #856404; text-decoration: underline;">
                 Or click here to open the simulation in a new tab
