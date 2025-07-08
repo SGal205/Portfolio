@@ -58,7 +58,7 @@
                 const animatedSections = [
                     { selector: '.technical', delay: 0 },
                     { selector: '.how-it-works', delay: 200 },
-                    { selector: '.responsive-iframe', delay: 0 },
+                    { selector: '.final-prototype', delay: 0 },
                     { selector: '.mobile-fallback', delay: 0 },
                     { selector: '.mobile-warning', delay: 0 }
                 ];
@@ -256,19 +256,26 @@
             transform: translateY(0) rotateX(0deg);
         }
 
+        .final-prototype {
+            width: 85%;
+            margin-left: 7.5%;
+            margin-right: 7.5%;
+            padding: 20px 0px;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .final-prototype.scroll-animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
         .responsive-iframe {
             width: 100%;
             height: 550px;
             border: none;
             border-radius: 10px;
-            opacity: 0;
-            transform: translateY(30px) scale(0.9);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .responsive-iframe.scroll-animate {
-            opacity: 1;
-            transform: translateY(0) scale(1);
         }
 
         .mobile-fallback {
@@ -276,14 +283,6 @@
             width: 100%;
             height: auto;
             border-radius: 10px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .mobile-fallback.scroll-animate {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .mobile-warning {
@@ -296,14 +295,6 @@
             text-align: center;
             margin-bottom: 15px;
             font-weight: 600;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .mobile-warning.scroll-animate {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         @media (hover: none) and (pointer: coarse){
@@ -490,45 +481,46 @@
 
 
         <div class = "how-it-works">
-        <p class = "head2">How it works:</p>
-        <p><span class = "head3">Detection:</span> NO<sub>2</sub>, PM2.5 Particles, CH<sub>4</sub>, CO</p>
-        <p class = "head3">Filtration:</p>
-        <ul>
-            <li>PM2.5 + TiO<sub>2</sub> filters remove airborne pollutants</li>
-            <li>12V brushless DC motor creates negative pressure to extract fumes</li>
-        </ul>
-        <p class = "head3">Monitoring:</p>
-        <ul>
-            <li>Fan speed auto-regulated via analogue Winsen gas sensor</li>
-            <li>Wind speed sensor tracks airflow strength and alerts user with LED if airflow drops, indicating filter replacement</li>
-            <li>N-Channel MOSFET used for efficient switching</li>
-        </ul>
-        <p class = "head3">Warning:</p>
-        <ul>
-            <li>Piezo buzzer activated when pollutants exceed safe levels</li>
-            <li>LED indicators provide visual alerts</li>
-        </ul>
-        <br>
-        <br>
-        
-        <p class = "head2">Final Prototype:</p>
-        <p>I prototyped and tested both the hardware and code required for this concept on TinkerCAD - code can be viewed on full report too:</p>
-        <!-- Mobile fallback image (shows on mobile devices) -->
-        <img src="tc.png" alt="Smart Home Design" class="mobile-fallback">
-        
-        <!-- Mobile warning message (shows on mobile devices only) -->
-        <div class="mobile-warning" style = "margin-top: 15px;">
-            📱 <strong>Mobile users:</strong> Please use a desktop or laptop device to view the interactive Tinkercad simulation.<br>
-            <a href="https://www.tinkercad.com/things/8qOFSoAeVlU" target="_blank" style="color: #856404; text-decoration: underline;">
-                Or click here to open the simulation in a new tab
-            </a>
+            <p class = "head2">How it works:</p>
+            <p><span class = "head3">Detection:</span> NO<sub>2</sub>, PM2.5 Particles, CH<sub>4</sub>, CO</p>
+            <p class = "head3">Filtration:</p>
+            
+            <ul>
+                <li>PM2.5 + TiO<sub>2</sub> filters remove airborne pollutants</li>
+                <li>12V brushless DC motor creates negative pressure to extract fumes</li>
+            </ul>
+            <p class = "head3">Monitoring:</p>
+            <ul>
+                <li>Fan speed auto-regulated via analogue Winsen gas sensor</li>
+                <li>Wind speed sensor tracks airflow strength and alerts user with LED if airflow drops, indicating filter replacement</li>
+                <li>N-Channel MOSFET used for efficient switching</li>
+            </ul>
+            <p class = "head3">Warning:</p>
+            <ul>
+                <li>Piezo buzzer activated when pollutants exceed safe levels</li>
+                <li>LED indicators provide visual alerts</li>
+            </ul>
         </div>
-        
-        <!-- Interactive Tinkercad simulation (shows on desktop devices) -->
-        <iframe src="https://www.tinkercad.com/embed/8qOFSoAeVlU?editbtn=1" 
-                class="responsive-iframe"
-                frameborder="0" marginwidth="0" marginheight="0" scrolling="no">
-        </iframe>
+
+        <div class = "final-prototype">
+            <p class = "head2">Final Prototype:</p>
+            <p>I prototyped and tested both the hardware and code required for this concept on TinkerCAD - code can be viewed on full report too:</p>
+            <!-- Mobile fallback image (shows on mobile devices) -->
+            <img src="tc.png" alt="Smart Home Design" class="mobile-fallback">
+            
+            <!-- Mobile warning message (shows on mobile devices only) -->
+            <div class="mobile-warning" style = "margin-top: 15px;">
+                📱 <strong>Mobile users:</strong> Please use a desktop or laptop device to view the interactive Tinkercad simulation.<br>
+                <a href="https://www.tinkercad.com/things/8qOFSoAeVlU" target="_blank" style="color: #856404; text-decoration: underline;">
+                    Or click here to open the simulation in a new tab
+                </a>
+            </div>
+            
+            <!-- Interactive Tinkercad simulation (shows on desktop devices) -->
+            <iframe src="https://www.tinkercad.com/embed/8qOFSoAeVlU?editbtn=1" 
+                    class="responsive-iframe"
+                    frameborder="0" marginwidth="0" marginheight="0" scrolling="no">
+            </iframe>
         </div>
 
         <footer>
