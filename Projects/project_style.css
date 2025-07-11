@@ -166,6 +166,7 @@ body {
     height: 100%;
     background-color: rgba(104, 104, 104, 0.35);
     border-radius: 15px;
+    color: #00000000;
 }
 
 
@@ -211,6 +212,12 @@ body {
 .project:hover .overlay {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
+    color: white;
+}
+
+.webdes:hover .overlay {
+    opacity: 1;
+    background-color: black
 }
 
 /* Media Queries for Responsive Design */

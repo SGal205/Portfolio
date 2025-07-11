@@ -1,0 +1,4 @@
+<!-- <a href = "SmartHome_Sujan_Galpottage.pdf" target = "_blank" class = "downloadbutton" style = " z-index: 2000; position: fixed; right: 15px; bottom: 15px; text-decoration: none; padding: 5px; background-color: rgb(154, 167, 13); border-radius: 50%; text-decoration: none; color: white; display: flex; align-items: center; width: 80px; height: 80px;">
+                    <i class="fa-solid fa-file-pdf" style= "color: rgb(255, 255, 255); font-size: 20px; margin-left: 5px;"></i>
+                    <span class = "reporttxt" style="margin-left: 3px; font-weight: 500; font-size: 11px; text-decoration: none;">Full Report</span>
+        </a> -->

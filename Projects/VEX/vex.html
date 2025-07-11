@@ -399,10 +399,6 @@
 
     <body>
         
-        <a href = "Vex_Project_Report.pdf" target = "_blank" class = "downloadbutton" style = " z-index: 2000; position: fixed; right: 15px; bottom: 15px; text-decoration: none; padding: 5px; background-color: rgb(154, 167, 13); border-radius: 50%; text-decoration: none; color: white; display: flex; align-items: center; width: 80px; height: 80px;">
-                    <i class="fa-solid fa-file-pdf" style= "color: rgb(255, 255, 255); font-size: 20px; margin-left: 5px;"></i>
-                    <span class = "reporttxt" style="margin-left: 3px; font-weight: 500; font-size: 11px; text-decoration: none;">Full Report</span>
-        </a>
 
         <div class = "menu">
             <!-- Home button -->
@@ -423,7 +419,7 @@
           
             <div class="overview">
                 <p class = "head2">Overview:</p>
-                <p>Human labour is costly and inefficient in the long run. To counter this, autonomous tech can be adopted. In this MECHENG201 project at the University of Auckland, our team developed a scaled down prototype of an autonomous vehicle using a V5 Vex Robot. The target was to achieve the precise pick-up and drop-off of payloads whilst navigating the complexities of a simulated warehouse environment.  The project being programmatic in nature, demanded the extensive use of C functionality guided by sensor readings to either hard code or implement control theories to achieve correct positioning.</p>
+                <p>Human labour is costly and inefficient in the long run. To counter this, autonomous tech can be adopted. In this project, our team developed a scaled down prototype of an autonomous vehicle using a V5 Vex Robot. The target was to achieve the precise pick-up and drop-off of payloads whilst navigating the complexities of a simulated warehouse environment.  The project being programmatic in nature, demanded the extensive use of C functionality guided by sensor readings to either hard code or implement control theories to achieve correct positioning.</p>
                 
             </div>
             <div class="project-image" style = "min-width: 300px; flex: 1; height: 300px; background-image: url(bg.png); background-size: contain; background-position: center; background-repeat: no-repeat;">   
@@ -496,7 +492,7 @@
 
         <div class = "final-prototype">
             <p class = "head2">Functions I worked on:</p>
-            <b>I performed an active role in developing, debugging and deploying these identified functions within the main program above. The full implementations may be found in the downloadable report.</b>
+            <b>I performed an active role in developing, debugging and deploying these identified functions within the main program above. The full implementations may be provided on request to preserve academic integrity.</b>
 
             
                 <p><span class = "code" style = "font-size: 18px; display: inline-block;">drivePIcont</span><br> Allows precise straight-line movement by pairing a PI controller for distance tracking with a P controller for trajectory alignment. It accepts inputs for target displacement and control gains and uses wheel encoder feedback along with the V5 timer to dynamically adjust voltage supplied to each motor. The function features real-world stability measures including anti-windup logic, saturation protection, and acceleration smoothing, ensuring accurate, responsive motion across a specified distance terminating within 3mm of the target distance.</p>
