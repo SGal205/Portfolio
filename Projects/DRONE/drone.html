@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- JAVASCRIPT -->
+ <!-- ======================================================================================= -->
+
+    <script>
+            // This script pauses all animations until the page is fully loaded
+            // You can safely ignore this section - it just controls when animations start
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                // PREVENT AUTO-SCROLLING ON LOAD
+                window.scrollTo(0, 0);
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+                
+                // Add a class to body to indicate page is loading
+                document.body.classList.add('page-loading');
+                
+                // Function to start all animations
+                function startAnimations() {
+                    // Keep page at top when starting animations
+                    window.scrollTo(0, 0);
+                    document.body.classList.remove('page-loading');
+                    document.body.classList.add('page-loaded');
+                    console.log('Page fully loaded - animations started!');
+                }
+                
+                // Wait for everything to load completely
+                window.addEventListener('load', function() {
+                    // Keep page at top
+                    window.scrollTo(0, 0);
+                    // Small delay to ensure everything is truly ready
+                    setTimeout(function() {
+                        startAnimations();
+                    }, 300);
+                });
+                
+                // Backup: Start animations after 3 seconds no matter what
+                setTimeout(function() {
+                    if (document.body.classList.contains('page-loading')) {
+                        startAnimations();
+                        console.log('Backup timer: Starting animations');
+                    }
+                }, 3000);
+                
+                // Prevent scrolling during page load
+                window.addEventListener('scroll', function() {
+                    if (document.body.classList.contains('page-loading')) {
+                        window.scrollTo(0, 0);
+                    }
+                });
+            });
+        </script>
+        
+        <script>
+            // SCROLL-TRIGGERED ANIMATIONS FOR ALL SECTIONS
+            document.addEventListener('DOMContentLoaded', function() {
+                const animatedSections = [
+                    { selector: '.technical', delay: 0 },
+                    { selector: '.how-it-works', delay: 200 },
+                    { selector: '.final-prototype', delay: 0 },
+                    { selector: '.mobile-fallback', delay: 0 },
+                    { selector: '.mobile-warning', delay: 0 }
+                ];
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Get the delay from the data attribute or default to 0
+                            const delay = parseInt(entry.target.dataset.animationDelay) || 0;
+                            
+                            setTimeout(() => {
+                                entry.target.classList.add('scroll-animate');
+                                console.log(`${entry.target.className} section animated!`);
+                            }, delay);
+                        }
+                    });
+                }, {
+                    threshold: 0.15, // Trigger when 15% of the section is visible
+                    rootMargin: '0px 0px -50px 0px' // Trigger slightly before it comes fully into view
+                });
+                
+                // Start observing all sections once the page loads
+                setTimeout(function() {
+                    animatedSections.forEach(section => {
+                        const element = document.querySelector(section.selector);
+                        if (element) {
+                            // Set delay as data attribute
+                            element.dataset.animationDelay = section.delay;
+                            observer.observe(element);
+                        }
+                    });
+                }, 500);
+            });
+    </script>
+    <!-- ======================================================================================= -->
+   
+    <!-- STYLESHEET -->
+     <style>
+
+        @import url('../../animations.css');
+
+            * {
+
+        /* Asterisk is a UNIVERSAL selector targetting every single element on the page */
+        box-sizing: border-box;
+        /* border-box ensures padding and border are included in sizing of element NOT MARGIN  */   
+        }
+
+        .code{
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            color: #0097CE;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+            padding: 0;   
+            background: linear-gradient(to right, #adadad, #ffffff);      
+            color: rgb(0, 0, 0);      
+        }
+
+        .menu {
+            background-color: rgba(195, 195, 195, 0.9);
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 20px 70px 20px 70px;
+            animation: slideD 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        #home {
+            /* position: absolute; */
+            /* top: 13px; */
+            /* left: 2.5vw; */
+            /* padding: 10px; */
+            color: rgb(154, 167, 13);
+            font-size: 30px;
+            /* border-radius: 5px;
+            z-index: 1000; */
+        }
+
+        h1 {
+           text-align: center;
+        }
+        
+        .overview {
+            min-width: 300px;
+            max-width: 700px; /* Set a max-width for larger screens */
+            flex: 1;
+            margin: 0 7.5vw 0 7.5vw;
+            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); */
+            color: rgb(255, 255, 255);
+            /* background: linear-gradient(to top, rgba(67, 67, 67, 0.8), rgba(213, 212, 212, 0.4)); */
+                        /* background: linear-gradient(to top, rgb(183, 198, 19), rgb(70, 77, 39)); */
+            /* background-color: rgba(238, 238, 238, 0.6); */
+            animation: slideU 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+            opacity: 0;
+            justify-content: center;
+        }
+
+
+        .head2 {
+            font-size: 1.5em;
+             font-weight: 800;
+        }
+
+        .head3 {
+            font-size: 1.25em;
+             font-weight: 700;
+        }
+        .technical {
+            width: 100%;
+            padding: 10px 0px;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .technical.scroll-animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .table {
+            width: 85%;
+            margin-left: 7.5%;
+            margin-right: 7.5%;
+            overflow: hidden;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 15px;
+            font-size: 16px;
+            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); */
+            text-align: center;
+        }
+    
+
+        th {
+            background-color: #5d5d5d;
+            /* background: linear-gradient(to top, rgb(183, 198, 19, 0.9), rgba(202, 248, 0, 0.3)); */
+            color: white;
+            font-weight: 700;
+            padding: 20px;
+            border: 0.5px solid rgba(0, 0, 0, 0.1);
+
+
+        }
+
+        td {
+
+            background-color: rgba(238, 238, 238, 0.6);
+            padding: 10px;
+            border: 0.5px solid rgba(0, 0, 0, 0.1);
+
+            /* color: rgb(57, 57, 57); */
+        }
+
+
+        /* Round the corner cells */
+        .table th:first-child {
+            border-top-left-radius: 15px;
+        }
+        
+        .table th:last-child {
+            border-top-right-radius: 15px;
+        }
+        
+        .table tr:last-child td:first-child {
+            border-bottom-left-radius: 15px;
+        }
+        
+        .table tr:last-child td:last-child {
+            border-bottom-right-radius: 15px;
+        }
+
+        .how-it-works {
+            width: 85%;
+            margin-left: 7.5%;
+            margin-right: 7.5%;
+            /* background-color: rgba(219, 219, 219, 0.7); */
+            border-radius: 15px;
+            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);    */
+            opacity: 0;
+            transform: translateY(50px) rotateX(10deg);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .how-it-works.scroll-animate {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .final-prototype {
+            width: 85%;
+            margin-left: 7.5%;
+            margin-right: 7.5%;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: justify;
+        }
+        
+        .final-prototype.scroll-animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .responsive-iframe {
+            width: 100%;
+            height: 550px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .mobile-fallback {
+            display: none;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .mobile-warning {
+            display: none;
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ffeaa7;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        @media (hover: none) and (pointer: coarse){
+            /* This catches ALL touch devices: phones, tablets, iPads */
+            .responsive-iframe {
+                display: none;
+            }
+            .mobile-fallback {
+                display: block;
+            }
+            .mobile-warning {
+                display: block;
+            }
+        }
+
+        /* ============= CLEAN IOT DESIGN ============= */
+        .downloadbutton {
+            transition: transform 0.3s ease;
+        }
+        
+        .downloadbutton:hover {
+            transform: scale(1.05);
+        }
+        
+        .table tr:hover {
+            background-color: rgba(154, 167, 13, 0.1);
+            transform: translateY(-3px);
+            transition: all 0.3s ease;
+        }
+        
+        .project-image {
+            transition: filter 0.3s ease;
+            animation: slideL 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+            opacity: 0;
+        }
+        
+        .project-image:hover {
+            filter: brightness(1.1);
+        }
+
+        @media (hover: none) and (pointer: coarse){
+            /* This catches ALL touch devices: phones, tablets, iPads */
+            .responsive-iframe {
+                display: none;
+            }
+            .mobile-fallback {
+                display: block;
+            }
+            .mobile-warning {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Styles for mobile devices */
+            .downloadbutton {
+                width: 40px !important; /* Adjust width for mobile */
+                height: 40px !important; /* Adjust height for mobile */
+                bottom: 7px;
+                right: 7px;
+            }
+            
+            .reporttxt {
+                display: none; /* Hide the text on mobile */
+            }
+
+            /* Make image container scroll horizontally on mobile */
+            .how-it-works div[style*="float: right"] {
+                float: none !important;
+                margin: 10px 0 !important;
+                width: 100% !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+            }
+
+            .how-it-works img {
+                min-width: 600px !important; /* Ensure minimum readable size */
+                width: 800px !important;
+                max-width: none !important;
+            }
+
+            /* Make tables scroll horizontally on mobile */
+            .table {
+                min-width: 600px !important; /* Ensure minimum readable size */
+                width: 100% !important;
+            }
+
+            /* Add horizontal scroll to table containers only */
+            .technical > div[style*="overflow: auto"] {
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+            }
+
+            /* Specifically target the table container in final-prototype, not the entire section */
+            .final-prototype .table {
+                min-width: 700px !important;
+            }
+        }
+
+
+        
+
+
+        /*ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }   */
+    </style>
+    <!-- ======================================================================================= -->
+
+    <!-- HEAD -->
+    <!-- ======================================================================================= -->
+    <head>
+        
+        <title>Drone Control System Design</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- MONTSERRAT FONT: -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+
+        <!-- ICON PACK: -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Icon pack  -->
+        <script src="https://kit.fontawesome.com/6277525465.js" crossorigin="anonymous"></script>
+
+    </head>
+    <!-- ======================================================================================= -->
+
+    <body>
+        
+
+        <div class = "menu">
+            <!-- Home button -->
+        <a id = "home" href = "../projects.html" style = "position: absolute; left: 0; top: 50%; transform: translateY(-50%); margin-left: 5%;">
+                <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <span style="font-weight: 400;">
+        Taming the Drone: Nonlinear Control with Cascaded Loops <br>
+        </span>
+    </div>
+
+        <div style = "position: relative; top: 0px; display: flex; flex-direction: row; flex-wrap: wrap; width: 100%; justify-content: center; background-color: black;  padding-top: 90px; animation: slideU 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+            box-shadow: 0 0 15px rgba(154, 167, 13, 0.5), 0 0 25px rgba(154, 167, 13, 0.2);
+            border-bottom: 2px solid rgba(154, 167, 13, 0.4);
+            opacity: 0;">
+
+          
+            <div class="overview">
+                <p class = "head2">Overview:</p>
+                <p style="text-align: justify;">Designed and tuned a cascaded control system for drone pitch stabilization and longitudinal position tracking using Simulink. While the inner pitch rate and angle loops were provided, I was responsible for achieving strict performance targets through tuning, and independently developed a 2-DOF PID controller for the outer position loop. This enabled smooth, accurate tracking with robust performance under nonlinear dynamics.</p>
+                
+            </div>
+            <div style="min-width: 300px; flex: 1; display: flex; flex-direction: column; align-items: center;">
+                <div class="project-image" style="width: 100%; height: 300px; background-image: url(bg2.png); background-size: contain; background-position: center; background-repeat: no-repeat; margin-bottom: 20px;">   
+                </div>
+            </div>
+           
+        </div>
+
+        <div class = "technical">
+
+            <p class = "head2" style = "margin-left: 7.5%;">🎯 Control Objectives:</p>
+
+        
+        <div style = "overflow: auto;">
+            <table class = "table" style = "border-color: rgb(161, 161, 161);">
+                <tr>
+                    <th>Loop</th>
+                    <th>Requirement</th>          
+                </tr>
+                <tr>
+                    <td><b>Pitch Rate</b></td>
+                    <td><b>T<sub>r</sub></b> &lt; 0.25s <br> <b>%OS</b> &lt; 10% <br> <b>e<sub>ss</sub></b> &lt; 0.01 rad/s</td>
+                </tr>
+                <tr>
+                <td><b>Pitch Angle</b></td>
+                <td><b>T<sub>r</sub></b> &lt; 0.5s <br> <b>%OS</b> &lt; 2% <br> <b>e<sub>ss</sub></b> &lt; 0 rad</td>
+                </tr>
+                <tr>
+                    <td><b>Position</b></td>
+                    <td><b>T<sub>s</sub>(2%)</b> &lt; 5s <br> <b>e<sub>ss</sub></b> &lt; 0 m</td>
+                </tr>
+            </table>
+                    
+        </div>
+        </div>
+        
+
+
+        <div class = "how-it-works" >
+            <hr>
+            <p class = "head2">Controller design:</p>
+            <p style="text-align: justify;">
+                <div style = "overflow-x: auto; overflow-y: hidden; float: right; margin: 10px 10px 30px 10px; max-width: 100%;">
+                <img src = "cl.png" alt = "Cascaded control loop diagram" style = "width: 900px; height: auto; min-width: 750px; display: block; margin: 0 auto; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);">
+                <figcaption style="margin-top: 10px; font-style: italic; color: #666; font-size: 14px; text-align: center;">Cascaded control loop diagram showing the three control loops</figcaption>
+                </div>
+                <br>
+            <b>Provided (Pre-built in Simulink)</b>
+                  <ul><li><u>Pitch Rate Loop:</u> Inner most loop with PI control (untuned)</li>
+                    <li><u>Pitch Angle Loop:</u> Middle loop with a P controller (untuned)</li></ul>
+                <ul><li>I tuned these controllers through theoretical derivation of control gains, assuming linearized dynamics. The obtained values were used as a starting point. Full derivation is withheld to maintain academic integrity.</li></ul>
+            <br>
+            <b>Designed (Independent work)</b>
+                   <ul><li><u>Position Loop:</u> Outermost loop, designed from scratch using a 2-DOF PID controller block</li></ul>
+            </p>
+
+<hr>
+            <p class = "head2">Tuning Strategy:</p>
+            <p>To meet the system's dynamic constraints under nonlinear conditions, a 2-DOF PID controller was selected for the outer position loop. This structure allowed separate weighting of the reference input in the proportional and derivative paths, improving setpoint tracking and reducing derivative kick.</p>
+            <p>Due to the system’s nonlinearity, linear tuning methods like Ziegler-Nichols were avoided. Instead, a linearized approximation was used to obtain initial gains, followed by iterative tuning based on simulated step responses.</p>
+            <ul>
+                <li>A small initial K<sub>P</sub> led to oscillations, so integral action was avoided to prevent amplification</li>
+                <li>Derivative control was added gradually to dampen oscillations and reduce overshoot</li>
+                <li>Setpoint derivative weighting (γ) was lowered to minimize spikes in control effort from step changes</li>
+            </ul>
+
+        </div>
+
+        <div class = "final-prototype">
+            <hr>
+            <p class = "head2" style="text-align: left;">Controller Performance:</p>
+                     
+            <!-- Table with its own scroll container -->
+            <div style="overflow-x: auto; overflow-y: hidden; margin-bottom: 30px;">
+                <table class = "table" style = "border-color: rgb(161, 161, 161); width: 100%; margin: 0;">
+                    <tr>
+                        <th>Loop</th>
+                        <th>Controller</th>
+                        <th>Parameters</th>
+                        <th>Performance</th>          
+                    </tr>
+                    <tr>
+                        <td><b>Pitch Rate</b></td>
+                        <td>PI-Control</td>
+                        <td><b>K<sub>p</sub></b> = 0.215 <br> <b>K<sub>i</sub></b> = 0.15</td>
+                        <td><b>T<sub>r</sub></b> = 0.243s <br> <b>%OS</b> = 8.77% <br> <b>e<sub>ss</sub></b> &lt; 8x10<sup>-3</sup> rad/s</td>
+                    </tr>
+                    <tr>
+                    <td><b>Pitch Angle</b></td>
+                    <td>PI-Control</td>
+                        <td><b>K<sub>p</sub></b> = 3.25</td>
+                    <td><b>T<sub>r</sub></b> = 0.39s <br> <b>%OS</b> = 1.45% <br> <b>e<sub>ss</sub></b> = ~0 rad</td>
+                    </tr>
+                    <tr>
+                        <td><b>Position</b></td>
+                        <td>PI-Control</td>
+                        <td><b>K<sub>p</sub></b> = 0.1 <br> <b>K<sub>i</sub></b> = 0.01</td>
+                        <td><b>T<sub>s</sub>(2%)</b> = 3.1s <br> <b>e<sub>ss</sub></b> = ~0 m</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- First graph with its own scroll container -->
+             <hr>
+             <br>
+            <div style="overflow-x: auto; overflow-y: hidden; margin-bottom: 30px; text-align: center;">
+                <figure style="margin: 0 auto; text-align: center;">
+                    <img src = "graph.png" alt = "Controller performance graph" style = "width: 1200px; min-width: 900px; height: auto; display: block; margin: 0 auto; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); border: 20px solid white;">
+                    <figcaption style="margin-top: 10px; font-style: italic; color: #666; font-size: 14px;">Controller time domain step response for longitudinal position</figcaption>
+                </figure>
+            </div>
+
+            <!-- Second graph with its own scroll container -->
+            <div style="overflow-x: auto; overflow-y: hidden; margin-bottom: 30px; text-align: center;">
+                <figure style="margin: 0 auto; text-align: center;">
+                    <img src = "graph2.png" alt = "Controller performance graph" style = "width: 1200px; min-width: 900px; height: auto; display: block; margin: 0 auto; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); border: 20px solid white;">
+                    <figcaption style="margin-top: 10px; font-style: italic; color: #666; font-size: 14px;">Controller time domain Actuator Torque response</figcaption>
+                </figure>
+            </div>
+            <hr>
+            <p class = "head2" style="text-align: left;">Gallery:</p>
+            <div style="text-align: center;">
+                <img src = "drone.gif" alt = "Animation of Drone" style="margin: 20px auto; width: 100%; max-width:700px; height: auto; display: block; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);">
+                <figcaption style="margin-top: 10px; font-style: italic; color: #666; font-size: 14px; text-align: center;">MATLAB UAV toolbox animation of the drone's flight path</figcaption>
+            </div>
+            <br>
+   
+        </div>
+
+        <footer>
+            <p style = "color:rgb(162, 162, 162); text-align: center; padding: 2vw; margin: 0; font-size: 12px;" >© 2025 Sujan Galpottage | All rights reserved.<br>Last updated: July 4, 2025</p>
+        </footer>
+    </body>
+
+</html>
