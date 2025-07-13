@@ -420,73 +420,32 @@
 
         <div class = "technical">
 
-            <p class = "head2">Technical implementation:</p>
-            <p><span class = "head3">Software Architecture:</span></p>
+            <p class = "head2">Preview:</p>
+            <video width = "100%" controls muted loop style = "margin: 0 auto; display: block; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);">
+                    <source src = "fsm.mp4" type = "video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <br>
+                <hr>
+            <p><span class = "head2">Technical implementation:</span>
+            <p><span class = "head3">Software Architecture:</span>
             <ul>
-                <li>Bare metal programming in C</li>
+                <li>Bare metal programming in C of a dual-state finite state machine:</li>
+                <ul>
+                    <br>
+                    <li><b>State 1:</b> Sampling ADC data</li>
+                    <li><b>State 2:</b> Stop sampling, ready to transfer data to Serial monitor</li>
+                    <br>
+                </ul>
             </ul>
-            <p class="head3">Hardware setup:</p>
-            <!-- Component table -->
-
-            <table class="table" style = "border-color: rgb(161, 161, 161);">
-                <tr>
-                    <th>System</th>
-                    <th>Electric Components</th>
-                    <th>Sensors</th>
-                    <th>Actuators</th>            
-                </tr>
-                <tr>
-                    <td>Air Purification and Warning System</td>
-                    <td>
-                        <ul>
-                            <li>Arduino Microcontroller</li>
-                            <li>Full-bridge rectifier & Transformer</li>
-                            (Mains voltage needs to be converted to DC and within 5V for the microcontroller)
-                            <li>LEDs, N-Channel MOSFET</li>
-                        </ul>
-                    </td>
-                    <td>Winsen Gas Sensor</td>
-                    <td>
-                        <ul>
-                            <li>Piezo Buzzer</li>
-                            <li>Brushless 12V DC motor (Fan)</li>
-                            <span>Fans fixed with PM2.5 and TiO<sub>2</sub> filters</span>
-                        </ul>
-                    </td>   
-                </tr>
-            </table>
-                    
-        </div>
-        
-
-
-        <div class = "how-it-works">
-            <p class = "head2">How it works:</p>
-            <p><span class = "head3">Detection:</span> NO<sub>2</sub>, PM2.5 Particles, CH<sub>4</sub>, CO</p>
-            <p class = "head3">Filtration:</p>
-            
-            <ul>
-                <li>PM2.5 + TiO<sub>2</sub> filters remove airborne pollutants</li>
-                <li>12V brushless DC motor creates negative pressure to extract fumes</li>
-            </ul>
-            <p class = "head3">Monitoring:</p>
-            <ul>
-                <li>Fan speed auto-regulated via analogue Winsen gas sensor</li>
-                <li>Wind speed sensor tracks airflow strength and alerts user with LED if airflow drops, indicating filter replacement</li>
-                <li>N-Channel MOSFET used for efficient switching</li>
-            </ul>
-            <p class = "head3">Warning:</p>
-            <ul>
-                <li>Piezo buzzer activated when pollutants exceed safe levels</li>
-                <li>LED indicators provide visual alerts</li>
-            </ul>
-        </div>
-
-        <div class = "final-prototype">
-            <p class = "head2">Final Prototype:</p>
-            <p>I prototyped and tested both the hardware and code required for this concept on TinkerCAD:</p>
-            <!-- Mobile fallback image (shows on mobile devices) -->
-            <img src="tc.png" alt="Smart Home Design" class="mobile-fallback">
+            </p>
+            <div style="overflow-x: auto; width: 100%; margin: 20px 0; text-align: center;">
+                <img src="fsm.png" alt="FSM Diagram" style="min-width: 700px; width: auto; max-width: 700px; height: auto; border-radius: 10px; margin: 10px auto; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.8);">
+            </div>
+            <hr>
+            <p class="head3">System Configuration:
+                                       <!-- Mobile fallback image (shows on mobile devices) -->
+            <img src="hardware.png" alt="Hardware" class="mobile-fallback">
             
             <!-- Mobile warning message (shows on mobile devices only) -->
             <div class="mobile-warning" style = "margin-top: 15px;">
@@ -501,8 +460,130 @@
                     class="responsive-iframe"
                     frameborder="0" marginwidth="0" marginheight="0" scrolling="no">
             </iframe>
+            <hr>
+            <p class = "head3">Description:</p>       
+            <ul>
+                <li><b>MCU:</b> ATmega328P (Arduino Uno R3)</li><br>
+                <li><b>Voltage Reference:</b> 2.5V via voltage divider</li><br>
+                <li><b>Input Waveform:</b> Sawtooth (0–2.5 V, 0.2 Hz, 1.25 V offset) — used as ADC test signal</li><br>
+                <li><b>FSM States:</b></li>
+                    <ul>
+                        <li>S1: Sampling active, LED blinks at 1Hz</li>
+                        <li>S2: Sampling off, LED blinks at 2Hz</li>
+                    </ul>
+                <br>
+                <li><b>Push Buttons:</b> Manual FSM control via INT0/INT1</li>
+                <br>
+                <li><b>Timers & Interrupts:</b></li>
+                    <ul>
+                        <li>Timer2: ~5ms sampling interval</li>
+                        <li>Timer1: LED blink rate control</li>
+                        <li>Timer0: 200ms software debounce</li>
+                        <li>External Interrupts: Trigger FSM transitions</li>
+                    </ul>
+                <br>
+                <li><b>ADC Settings:</b></li>
+                    <ul>
+                        <li>8-bit, left-aligned output</li>
+                        <li>Single-conversion mode</li>
+                        <li>Prescalers tested: 2 → 128</li>
+                    </ul>
+                <br>
+                <li><b>Sampling Strategy:</b></li>
+                    <ul>
+                        <li>Samples stored in a fixed-size ring buffer (1500 entries)</li>
+                        <li>ISR-driven logging via Timer2 for consistent timing</li>
+                    </ul>
+
+            </ul>
+        </div>
+        
+
+
+        <div class = "how-it-works">
+            <hr>
+            <p class = "head2">ADC Output (sampled):</p>
+            <div class="adc-graphs-flex">
+                <div class="adc-graph-img">
+                    <img src="graph.png" alt="ADC Output">
+                </div>
+                <div class="adc-graph-img">
+                    <img src="graph2.png" alt="ADC Offset Error (LSB)">
+                </div>
+                <div class="adc-graph-img">
+                    <img src="graph3.png" alt="ADC Gain Error (LSB)">
+                </div>
+            </div>
+                    <p> The ADC output graphs show the performance of the ATmega328P’s ADC under different clock prescaler settings. The offset error stabilizes around -1.3 LSB as the prescaler increases, while the gain error shows a linear increase with higher prescaler values. This indicates a trade-off between sampling speed and accuracy, where lower prescaler settings yield faster sampling but higher offset errors, and higher settings provide more accurate results at the cost of slower sampling rates. </p>
+
+        </div>
+        <style>
+        .adc-graphs-flex {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            width: 100%;
+        }
+        .adc-graph-img {
+            flex: 1 1 320px;
+            min-width: 320px;
+            max-width: 700px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .adc-graph-img img {
+            width: 100%;
+            min-width: 250px;
+            max-width: 700px;
+            height: auto;
+            border-radius: 10px;
+            margin: 0 auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            display: block;
+        }
+
+        @media (max-width: 1200px) {
+            .adc-graphs-flex {
+                gap: 12px;
+            }
+            .adc-graph-img {
+                min-width: 220px;
+            }
+        }
+        @media (max-width: 900px) {
+            .adc-graphs-flex {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .adc-graph-img {
+                min-width: 0;
+                max-width: 100%;
+            }
+            .adc-graph-img img {
+                min-width: 0;
+                max-width: 100%;
+            }
+        }
+        </style>
         </div>
 
+        <div class = "final-prototype">
+            <hr>
+            <p class = "head2">Insights:</p>
+            <ul>
+                <li>ADC clock prescaler settings significantly impact accuracy</li>
+                <li>Lower prescaler values yield faster sampling but higher offset errors</li>
+                <li>Higher prescaler values improve accuracy at the cost of slower sampling rates</li>
+                <li>Finite State Machine (FSM) design ensures reliable and repeatable testing</li>
+            </ul>
+            <br>
+            <hr>
+        </div>
         <footer>
             <p style = "color:rgb(162, 162, 162); text-align: center; padding: 2vw; margin: 0; font-size: 12px;" >© 2025 Sujan Galpottage | All rights reserved.<br>Last updated: July 4, 2025</p>
         </footer>
