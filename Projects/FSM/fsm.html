@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- JAVASCRIPT -->
+ <!-- ======================================================================================= -->
+
+    <script>
+            // This script pauses all animations until the page is fully loaded
+            // You can safely ignore this section - it just controls when animations start
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                // PREVENT AUTO-SCROLLING ON LOAD
+                window.scrollTo(0, 0);
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+                
+                // Add a class to body to indicate page is loading
+                document.body.classList.add('page-loading');
+                
+                // Function to start all animations
+                function startAnimations() {
+                    // Keep page at top when starting animations
+                    window.scrollTo(0, 0);
+                    document.body.classList.remove('page-loading');
+                    document.body.classList.add('page-loaded');
+                    console.log('Page fully loaded - animations started!');
+                }
+                
+                // Wait for everything to load completely
+                window.addEventListener('load', function() {
+                    // Keep page at top
+                    window.scrollTo(0, 0);
+                    // Small delay to ensure everything is truly ready
+                    setTimeout(function() {
+                        startAnimations();
+                    }, 300);
+                });
+                
+                // Backup: Start animations after 3 seconds no matter what
+                setTimeout(function() {
+                    if (document.body.classList.contains('page-loading')) {
+                        startAnimations();
+                        console.log('Backup timer: Starting animations');
+                    }
+                }, 3000);
+                
+                // Prevent scrolling during page load
+                window.addEventListener('scroll', function() {
+                    if (document.body.classList.contains('page-loading')) {
+                        window.scrollTo(0, 0);
+                    }
+                });
+            });
+        </script>
+        
+        <script>
+            // SCROLL-TRIGGERED ANIMATIONS FOR ALL SECTIONS
+            document.addEventListener('DOMContentLoaded', function() {
+                const animatedSections = [
+                    { selector: '.technical', delay: 0 },
+                    { selector: '.how-it-works', delay: 200 },
+                    { selector: '.final-prototype', delay: 0 },
+                    { selector: '.mobile-fallback', delay: 0 },
+                    { selector: '.mobile-warning', delay: 0 }
+                ];
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Get the delay from the data attribute or default to 0
+                            const delay = parseInt(entry.target.dataset.animationDelay) || 0;
+                            
+                            setTimeout(() => {
+                                entry.target.classList.add('scroll-animate');
+                                console.log(`${entry.target.className} section animated!`);
+                            }, delay);
+                        }
+                    });
+                }, {
+                    threshold: 0.15, // Trigger when 15% of the section is visible
+                    rootMargin: '0px 0px -50px 0px' // Trigger slightly before it comes fully into view
+                });
+                
+                // Start observing all sections once the page loads
+                setTimeout(function() {
+                    animatedSections.forEach(section => {
+                        const element = document.querySelector(section.selector);
+                        if (element) {
+                            // Set delay as data attribute
+                            element.dataset.animationDelay = section.delay;
+                            observer.observe(element);
+                        }
+                    });
+                }, 500);
+            });
+    </script>
+    <!-- ======================================================================================= -->
+   
+    <!-- STYLESHEET -->
+     <style>
+
+        @import url('../../animations.css');
+
+            * {
+
+        /* Asterisk is a UNIVERSAL selector targetting every single element on the page */
+        box-sizing: border-box;
+        /* border-box ensures padding and border are included in sizing of element NOT MARGIN  */   
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+            padding: 0;   
+            background: linear-gradient(to right, #adadad, #ffffff);      
+            color: rgb(0, 0, 0);      
+        }
+
+        .menu {
+            background-color: rgba(195, 195, 195, 0.9);
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 20px 70px 20px 70px;
+            animation: slideD 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        #home {
+            /* position: absolute; */
+            /* top: 13px; */
+            /* left: 2.5vw; */
+            /* padding: 10px; */
+            color: rgb(154, 167, 13);
+            font-size: 30px;
+            /* border-radius: 5px;
+            z-index: 1000; */
+        }
+
+        h1 {
+           text-align: center;
+        }
+        
+        .overview {
+            min-width: 300px;
+            max-width: 700px; /* Set a max-width for larger screens */
+            flex: 1;
+            margin: 0 7.5vw 0 7.5vw;
+            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); */
+            color: rgb(255, 255, 255);
+            /* background: linear-gradient(to top, rgba(67, 67, 67, 0.8), rgba(213, 212, 212, 0.4)); */
+                        /* background: linear-gradient(to top, rgb(183, 198, 19), rgb(70, 77, 39)); */
+            /* background-color: rgba(238, 238, 238, 0.6); */
+            animation: slideU 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+            opacity: 0;
+        }
+
+
+        .head2 {
+            font-size: 1.5em;
+             font-weight: 800;
+        }
+
+        .head3 {
+            font-size: 1.25em;
+             font-weight: 700;
+        }
+        .technical {
+            width: 85%;
+            margin-left: 7.5%;
+            margin-right: 7.5%;
+            overflow: auto;
+            padding: 10px 0px;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .technical.scroll-animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .technical .table {
+            width: 100%;
+            overflow: hidden;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 15px;
+            font-size: 16px;
+            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); */
+            text-align: left;
+        }
+    
+
+        th {
+            background-color: #5d5d5d;
+            /* background: linear-gradient(to top, rgb(183, 198, 19, 0.9), rgba(202, 248, 0, 0.3)); */
+            color: white;
+            font-weight: 700;
+            padding: 20px;
+
+        }
+
+        td {
+
+            background-color: rgba(238, 238, 238, 0.6);
+            padding: 10px;
+            /* color: rgb(57, 57, 57); */
+        }
+
+        th:not(:last-child), td:not(:last-child) {
+            /* Add a right border to all cells except the last column */
+        border-right: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Round the corner cells */
+        .table th:first-child {
+            border-top-left-radius: 15px;
+        }
+        
+        .table th:last-child {
+            border-top-right-radius: 15px;
+        }
+        
+        .table tr:last-child td:first-child {
+            border-bottom-left-radius: 15px;
+        }
+        
+        .table tr:last-child td:last-child {
+            border-bottom-right-radius: 15px;
+        }
+
+        .how-it-works {
+            width: 85%;
+            margin-left: 7.5%;
+            margin-right: 7.5%;
+            padding: 20px 0px;
+            /* background-color: rgba(219, 219, 219, 0.7); */
+            border-radius: 15px;
+            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);    */
+            opacity: 0;
+            transform: translateY(50px) rotateX(10deg);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .how-it-works.scroll-animate {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .final-prototype {
+            width: 85%;
+            margin-left: 7.5%;
+            margin-right: 7.5%;
+            padding: 20px 0px;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .final-prototype.scroll-animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .responsive-iframe {
+            width: 100%;
+            height: 550px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .mobile-fallback {
+            display: none;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .mobile-warning {
+            display: none;
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ffeaa7;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        @media (hover: none) and (pointer: coarse){
+            /* This catches ALL touch devices: phones, tablets, iPads */
+            .responsive-iframe {
+                display: none;
+            }
+            .mobile-fallback {
+                display: block;
+            }
+            .mobile-warning {
+                display: block;
+            }
+        }
+
+        /* ============= CLEAN IOT DESIGN ============= */
+        .downloadbutton {
+            transition: transform 0.3s ease;
+        }
+        
+        .downloadbutton:hover {
+            transform: scale(1.05);
+        }
+        
+        .table tr:hover {
+            background-color: rgba(154, 167, 13, 0.1);
+            transform: translateY(-3px);
+            transition: all 0.3s ease;
+        }
+        
+        .house-image {
+            transition: filter 0.3s ease;
+            animation: slideL 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+            opacity: 0;
+        }
+        
+        .house-image:hover {
+            filter: brightness(1.1);
+        }
+
+        @media (hover: none) and (pointer: coarse){
+            /* This catches ALL touch devices: phones, tablets, iPads */
+            .responsive-iframe {
+                display: none;
+            }
+            .mobile-fallback {
+                display: block;
+            }
+            .mobile-warning {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Styles for mobile devices */
+            .downloadbutton {
+                width: 40px !important; /* Adjust width for mobile */
+                height: 40px !important; /* Adjust height for mobile */
+                bottom: 7px;
+                right: 7px;
+            }
+            
+            .reporttxt {
+                display: none; /* Hide the text on mobile */
+            }
+        }
+
+
+        
+
+
+        /*ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }   */
+    </style>
+    <!-- ======================================================================================= -->
+
+    <!-- HEAD -->
+    <!-- ======================================================================================= -->
+    <head>
+        
+        <title>Measuring ADC performance</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- MONTSERRAT FONT: -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <!-- ICON PACK: -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Icon pack  -->
+        <script src="https://kit.fontawesome.com/6277525465.js" crossorigin="anonymous"></script>
+
+    </head>
+    <!-- ======================================================================================= -->
+
+    <body>
+
+        <div class = "menu">
+            <!-- Home button -->
+        <a id = "home" href = "../projects.html" style = "position: absolute; left: 0; top: 50%; transform: translateY(-50%); margin-left: 5%;">
+                <i class="fa-solid fa-arrow-left"></i>
+        </a>
+          
+        <span style="font-weight: 400;">
+        Byte-Level Brilliance: FSM-Enabled ADC Testing<br>
+        </span>
+    </div>
+
+        <div style = "position: relative; top: 0px; display: flex; flex-direction: row; flex-wrap: wrap; width: 100%; justify-content: center; background-color: black;  padding-top: 80px; animation: slideU 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+            box-shadow: 0 0 15px rgba(154, 167, 13, 0.5), 0 0 25px rgba(154, 167, 13, 0.2);
+            border-bottom: 2px solid rgba(154, 167, 13, 0.4);
+            opacity: 0;">
+
+          
+            <div class="overview">
+                <p class = "head2">Overview:</p>
+                <p>In this project, I evaluated the ATmega328P’s ADC by measuring offset and gain errors across different prescaler settings. To ensure reliable testing, I designed a Finite State Machine (FSM) that automated sampling and data transfer, improving repeatability. The results quantified how ADC clock prescaler configurations impact accuracy, providing valuable insights for real-time embedded designs where both temporal and behavioral precision are critical.</p>
+            </div>
+            <div class="house-image" style = "min-width: 300px; flex: 1; height: 300px; background-image: url(house.png); background-size: contain; background-position: right center; background-repeat: no-repeat;">   
+            </div>
+        </div>
+
+        <div class = "technical">
+
+            <p class = "head2">Technical implementation:</p>
+            <p><span class = "head3">Software Architecture:</span></p>
+            <ul>
+                <li>Bare metal programming in C</li>
+            </ul>
+            <p class="head3">Hardware setup:</p>
+            <!-- Component table -->
+
+            <table class="table" style = "border-color: rgb(161, 161, 161);">
+                <tr>
+                    <th>System</th>
+                    <th>Electric Components</th>
+                    <th>Sensors</th>
+                    <th>Actuators</th>            
+                </tr>
+                <tr>
+                    <td>Air Purification and Warning System</td>
+                    <td>
+                        <ul>
+                            <li>Arduino Microcontroller</li>
+                            <li>Full-bridge rectifier & Transformer</li>
+                            (Mains voltage needs to be converted to DC and within 5V for the microcontroller)
+                            <li>LEDs, N-Channel MOSFET</li>
+                        </ul>
+                    </td>
+                    <td>Winsen Gas Sensor</td>
+                    <td>
+                        <ul>
+                            <li>Piezo Buzzer</li>
+                            <li>Brushless 12V DC motor (Fan)</li>
+                            <span>Fans fixed with PM2.5 and TiO<sub>2</sub> filters</span>
+                        </ul>
+                    </td>   
+                </tr>
+            </table>
+                    
+        </div>
+        
+
+
+        <div class = "how-it-works">
+            <p class = "head2">How it works:</p>
+            <p><span class = "head3">Detection:</span> NO<sub>2</sub>, PM2.5 Particles, CH<sub>4</sub>, CO</p>
+            <p class = "head3">Filtration:</p>
+            
+            <ul>
+                <li>PM2.5 + TiO<sub>2</sub> filters remove airborne pollutants</li>
+                <li>12V brushless DC motor creates negative pressure to extract fumes</li>
+            </ul>
+            <p class = "head3">Monitoring:</p>
+            <ul>
+                <li>Fan speed auto-regulated via analogue Winsen gas sensor</li>
+                <li>Wind speed sensor tracks airflow strength and alerts user with LED if airflow drops, indicating filter replacement</li>
+                <li>N-Channel MOSFET used for efficient switching</li>
+            </ul>
+            <p class = "head3">Warning:</p>
+            <ul>
+                <li>Piezo buzzer activated when pollutants exceed safe levels</li>
+                <li>LED indicators provide visual alerts</li>
+            </ul>
+        </div>
+
+        <div class = "final-prototype">
+            <p class = "head2">Final Prototype:</p>
+            <p>I prototyped and tested both the hardware and code required for this concept on TinkerCAD:</p>
+            <!-- Mobile fallback image (shows on mobile devices) -->
+            <img src="tc.png" alt="Smart Home Design" class="mobile-fallback">
+            
+            <!-- Mobile warning message (shows on mobile devices only) -->
+            <div class="mobile-warning" style = "margin-top: 15px;">
+                📱 <strong>Mobile users:</strong> Please use a desktop or laptop device to view the interactive Tinkercad simulation.<br>
+                <a href="https://www.tinkercad.com/things/8qOFSoAeVlU" target="_blank" style="color: #856404; text-decoration: underline;">
+                    Or click here to open the simulation in a new tab
+                </a>
+            </div>
+            
+            <!-- Interactive Tinkercad simulation (shows on desktop devices) -->
+            <iframe src="https://www.tinkercad.com/embed/3V1WjR4JrMq?editbtn=1" 
+                    class="responsive-iframe"
+                    frameborder="0" marginwidth="0" marginheight="0" scrolling="no">
+            </iframe>
+        </div>
+
+        <footer>
+            <p style = "color:rgb(162, 162, 162); text-align: center; padding: 2vw; margin: 0; font-size: 12px;" >© 2025 Sujan Galpottage | All rights reserved.<br>Last updated: July 4, 2025</p>
+        </footer>
+    </body>
+
+</html>

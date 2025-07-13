@@ -57,7 +57,8 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const animatedSections = [
                     { selector: '.technical', delay: 0 },
-                    { selector: '.how-it-works', delay: 200 },
+                    { selector: '.preview-section', delay: 200 },
+                    { selector: '.main-program-section', delay: 400 },
                     { selector: '.final-prototype', delay: 0 },
                     { selector: '.mobile-fallback', delay: 0 },
                     { selector: '.mobile-warning', delay: 0 }
@@ -180,7 +181,9 @@
              font-weight: 700;
         }
         .technical {
-            width: 100%;
+            width: 85%;
+            margin: auto;
+            overflow: auto;
             padding: 10px 0px;
             opacity: 0;
             transform: translateY(40px) scale(0.95);
@@ -192,9 +195,7 @@
             transform: translateY(0) scale(1);
         }
         .technical .table {
-            width: 85%;
-            margin-left: 7.5%;
-            margin-right: 7.5%;
+            width: 100%;
             overflow: hidden;
             border-collapse: separate;
             border-spacing: 0;
@@ -250,12 +251,13 @@
             /* background-color: rgba(219, 219, 219, 0.7); */
             border-radius: 15px;
             /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);    */
+        }
+        .preview-section, .main-program-section {
             opacity: 0;
             transform: translateY(50px) rotateX(10deg);
             transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        .how-it-works.scroll-animate {
+        .preview-section.scroll-animate, .main-program-section.scroll-animate {
             opacity: 1;
             transform: translateY(0) rotateX(0deg);
         }
@@ -428,7 +430,7 @@
 
         <div class = "technical">
 
-            <p class = "head2" style = "margin-left: 7.5%;">Key challenges and achievements:</p>
+            <p class = "head2">Key challenges and achievements:</p>
 
         
         <div style = "overflow: auto;">
@@ -472,25 +474,34 @@
 
 
         <div class = "how-it-works" >
-            <p class = "head2">Main program:</p>
-            <hr>
-            <p style = "margin-bottom: 60px;">I played a major role in developing this program keeping the constraints of the simulated warehouse layout in mind: </p>
-            <div style = "overflow: auto;">
-                <figure style="margin: 0 auto 80px auto; text-align: center;">
-                    <img src = "warehouse.png" alt = "Warehouse layout" style = "width: 60%; max-width:700px; min-width: 415px; height: auto; overflow: hidden; border-radius: 10px; display: block; margin: 0 auto;">
-                    <figcaption style="margin-top: 10px; font-style: italic; color: #666; font-size: 14px;">Simulated warehouse environment layout showing pickup and drop-off zones</figcaption>
-                </figure>
+            <div class="preview-section">
+                <hr>
+                <p class = "head2">Preview:</p>
+                <video width = "100%" controls muted loop style = "margin: 0 auto; display: block; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);">
+                    <source src = "test.mp4" type = "video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <br>
+                <hr>
             </div>
-                
-            <!-- Flowchart with its own scroll container -->
-            <div style="overflow-x: auto; overflow-y: hidden; margin-bottom: 30px;">
-                <figure style="margin: 0 auto 80px auto; text-align: center;">
-                    <img src = "flowchart.png" alt = "Flowchart of main program" style = "width: 100%; max-width: 900px; height: auto; min-width: 750px; display: block; margin: 0 auto; border-radius: 10px;">
-                    <figcaption style="margin-top: 10px; font-style: italic; color: #666; font-size: 14px;">Main program flowchart illustrating the autonomous navigation logic</figcaption>
-                </figure>
+            <div class="main-program-section">
+                <p class = "head2">Main program:</p>
+                <p style = "margin-bottom: 60px;">I played a major role in developing this program keeping the constraints of the simulated warehouse layout in mind: </p>
+                <div style = "overflow: auto;">
+                    <figure style="margin: 0 auto 80px auto; text-align: center;">
+                        <img src = "warehouse.png" alt = "Warehouse layout" style = "width: 60%; max-width:700px; min-width: 415px; height: auto; overflow: hidden; border-radius: 10px; display: block; margin: 0 auto;">
+                        <figcaption style="margin-top: 10px; font-style: italic; color: #666; font-size: 14px;">Simulated warehouse environment layout showing pickup and drop-off zones</figcaption>
+                    </figure>
+                </div>
+                <!-- Flowchart with its own scroll container -->
+                <div style="overflow-x: auto; overflow-y: hidden; margin-bottom: 30px;">
+                    <figure style="margin: 0 auto 80px auto; text-align: center;">
+                        <img src = "flowchart.png" alt = "Flowchart of main program" style = "width: 100%; max-width: 900px; height: auto; min-width: 750px; display: block; margin: 0 auto; border-radius: 10px;">
+                        <figcaption style="margin-top: 10px; font-style: italic; color: #666; font-size: 14px;">Main program flowchart illustrating the autonomous navigation logic</figcaption>
+                    </figure>
+                </div>
+                <hr>
             </div>
-            <hr>
-
         </div>
 
         <div class = "final-prototype">
@@ -504,10 +515,6 @@
                 <p><span class = "code" style = "font-size: 18px;">rotatePI</span><br>Implements a close-looped PI control scheme to rotate the robot chassis about its pivot point by a specified angle. It accepts control gains and the target rotation as input arguments. Wheel encoder counts are used to compute the arc length which is converted to angular displacement using the robot’s known dimensions. The function applies equal and opposite motor voltages to achieve on-the-spot rotation, further featuring anti-windup and saturation safeguards to ensure stable turning.</p>
                 <p><span class = "code" style = "font-size: 18px;">followBrown</span><br>Uses closed loop feedback from light sensors to achieve line following where marked with a brown colour. It is a single-input function requiring the desired power level or speed when following the line. It reviews a multitude of edge cases considering may combinations of position of sensors relative to the line to determine the required corrective action.</p>  
             <hr>
-            <p class = "head2">Gallery:</p>
-            <video width = "100%" controls muted loop style = "margin: 0 auto; display: block; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);">
-                <source src = "test.mp4" type = "video/mp4">
-                Your browser does not support the video tag.
         </div>
 
         <footer>

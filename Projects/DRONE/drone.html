@@ -56,8 +56,9 @@
             // SCROLL-TRIGGERED ANIMATIONS FOR ALL SECTIONS
             document.addEventListener('DOMContentLoaded', function() {
                 const animatedSections = [
-                    { selector: '.technical', delay: 0 },
-                    { selector: '.how-it-works', delay: 200 },
+                    { selector: '.preview', delay: 0 },
+                    { selector: '.technical', delay: 200 },
+                    { selector: '.how-it-works', delay: 400 },
                     { selector: '.final-prototype', delay: 0 },
                     { selector: '.mobile-fallback', delay: 0 },
                     { selector: '.mobile-warning', delay: 0 }
@@ -180,8 +181,9 @@
             font-size: 1.25em;
              font-weight: 700;
         }
-        .technical {
-            width: 100%;
+        .technical, .preview {
+            width: 85%;
+            margin: auto;
             padding: 10px 0px;
             opacity: 0;
             transform: translateY(40px) scale(0.95);
@@ -192,10 +194,13 @@
             opacity: 1;
             transform: translateY(0) scale(1);
         }
+
+        .preview.scroll-animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
         .table {
-            width: 85%;
-            margin-left: 7.5%;
-            margin-right: 7.5%;
+            width: 100%;
             overflow: hidden;
             border-collapse: separate;
             border-spacing: 0;
@@ -462,9 +467,19 @@
            
         </div>
 
-        <div class = "technical">
+        <div class = "preview">
+            <p class = "head2" style = "margin-left: 7.5%;">Preview:</p>
+            <div style="text-align: center; width: 85%; margin: auto;">
+                <img src = "drone.gif" alt = "Animation of Drone" style="margin: auto; width: 100%; max-width:700px; height: auto; display: block; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);">
+                <figcaption style="margin-top: 10px; font-style: italic; color: #666; font-size: 14px; text-align: center;">MATLAB UAV toolbox animation of the drone's flight path</figcaption>
+            <br>                
+            <hr>
 
-            <p class = "head2" style = "margin-left: 7.5%;">🎯 Control Objectives:</p>
+            </div>
+        </div>
+
+        <div class = "technical">
+            <p class = "head2">Control Objectives:</p>
 
         
         <div style = "overflow: auto;">
@@ -574,11 +589,7 @@
                 </figure>
             </div>
             <hr>
-            <p class = "head2" style="text-align: left;">Gallery:</p>
-            <div style="text-align: center;">
-                <img src = "drone.gif" alt = "Animation of Drone" style="margin: 20px auto; width: 100%; max-width:700px; height: auto; display: block; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);">
-                <figcaption style="margin-top: 10px; font-style: italic; color: #666; font-size: 14px; text-align: center;">MATLAB UAV toolbox animation of the drone's flight path</figcaption>
-            </div>
+            
             <br>
    
         </div>

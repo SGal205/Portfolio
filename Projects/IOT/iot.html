@@ -174,7 +174,8 @@
              font-weight: 700;
         }
         .technical {
-            width: 100%;
+            width: 85%;
+            margin:auto;
             overflow: auto;
             padding: 10px 0px;
             opacity: 0;
@@ -187,9 +188,7 @@
             transform: translateY(0) scale(1);
         }
         .technical .table {
-            width: 85%;
-            margin-left: 7.5%;
-            margin-right: 7.5%;
+            width: 100%;
             overflow: hidden;
             border-collapse: separate;
             border-spacing: 0;
@@ -260,7 +259,7 @@
             width: 85%;
             margin-left: 7.5%;
             margin-right: 7.5%;
-            padding: 20px 0px;
+            padding: 10px 0px;
             opacity: 0;
             transform: translateY(40px) scale(0.95);
             transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
@@ -419,9 +418,10 @@
             </div>
         </div>
 
+        
         <div class = "technical">
 
-            <p class = "head2" style = "margin-left: 7.5%;">Technical implementation:</p>
+            <p class = "head2">Technical implementation:</p>
             <!-- Component table -->
             <table class="table" style = "border-color: rgb(161, 161, 161);">
                 <tr>
@@ -450,12 +450,32 @@
                     </td>   
                 </tr>
             </table>
-                    
+        </div>
+    
+        <div class = "final-prototype">
+            <p class = "head2"></p>
+            <!-- Mobile fallback image (shows on mobile devices) -->
+            <img src="tc.png" alt="Smart Home Design" class="mobile-fallback">
+            
+            <!-- Mobile warning message (shows on mobile devices only) -->
+            <div class="mobile-warning" style = "margin-top: 15px;">
+                📱 <strong>Mobile users:</strong> Please use a desktop or laptop device to view the interactive Tinkercad simulation.<br>
+                <a href="https://www.tinkercad.com/things/8qOFSoAeVlU" target="_blank" style="color: #856404; text-decoration: underline;">
+                    Or click here to open the simulation in a new tab
+                </a>
+            </div>
+            
+            <!-- Interactive Tinkercad simulation (shows on desktop devices) -->
+            <iframe src="https://www.tinkercad.com/embed/8qOFSoAeVlU?editbtn=1" 
+                    class="responsive-iframe"
+                    frameborder="0" marginwidth="0" marginheight="0" scrolling="no">
+            </iframe>
         </div>
         
 
 
         <div class = "how-it-works">
+            <hr>
             <p class = "head2">How it works:</p>
             <p><span class = "head3">Detection:</span> NO<sub>2</sub>, PM2.5 Particles, CH<sub>4</sub>, CO</p>
             <p class = "head3">Filtration:</p>
@@ -475,27 +495,8 @@
                 <li>Piezo buzzer activated when pollutants exceed safe levels</li>
                 <li>LED indicators provide visual alerts</li>
             </ul>
-        </div>
-
-        <div class = "final-prototype">
-            <p class = "head2">Final Prototype:</p>
-            <p>I prototyped and tested both the hardware and code required for this concept on TinkerCAD:</p>
-            <!-- Mobile fallback image (shows on mobile devices) -->
-            <img src="tc.png" alt="Smart Home Design" class="mobile-fallback">
-            
-            <!-- Mobile warning message (shows on mobile devices only) -->
-            <div class="mobile-warning" style = "margin-top: 15px;">
-                📱 <strong>Mobile users:</strong> Please use a desktop or laptop device to view the interactive Tinkercad simulation.<br>
-                <a href="https://www.tinkercad.com/things/8qOFSoAeVlU" target="_blank" style="color: #856404; text-decoration: underline;">
-                    Or click here to open the simulation in a new tab
-                </a>
-            </div>
-            
-            <!-- Interactive Tinkercad simulation (shows on desktop devices) -->
-            <iframe src="https://www.tinkercad.com/embed/8qOFSoAeVlU?editbtn=1" 
-                    class="responsive-iframe"
-                    frameborder="0" marginwidth="0" marginheight="0" scrolling="no">
-            </iframe>
+            <br>
+            <hr>
         </div>
 
         <footer>

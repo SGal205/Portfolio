@@ -76,9 +76,15 @@
 
 .highlight {
     padding: 0 0.5vw; /* Adds padding to the highlighted text for better visibility */
+    margin: 1px 0; /* Adds slight vertical separation between highlights */
     animation: highlight 0.5s ease-in-out forwards;
     animation-delay: 1.5s;
     border-radius: 10px; /* Adds rounded corners to the highlighted text */
+    display: inline-block; /* Needed for transform to work properly */
+    /* Simulate bold width with invisible text-shadow to prevent jumping */
+    text-shadow: 
+        0.5px 0 0 transparent,
+        -0.5px 0 0 transparent;
 }
 
 /* RESPONSIVE DESIGN FOR SMALLER SCREENS THIS SECTION WILL OVERWRITE ONLY WHATS STATED THERE
