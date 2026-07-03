@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- JAVASCRIPT -->
+ <!-- ======================================================================================= -->
+
+    <script>
+            // This script pauses all animations until the page is fully loaded
+            // You can safely ignore this section - it just controls when animations start
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                // PREVENT AUTO-SCROLLING ON LOAD
+                window.scrollTo(0, 0);
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+                
+                // Add a class to body to indicate page is loading
+                document.body.classList.add('page-loading');
+                
+                // Function to start all animations
+                function startAnimations() {
+                    // Keep page at top when starting animations
+                    window.scrollTo(0, 0);
+                    document.body.classList.remove('page-loading');
+                    document.body.classList.add('page-loaded');
+                    console.log('Page fully loaded - animations started!');
+                }
+                
+                // Wait for everything to load completely
+                window.addEventListener('load', function() {
+                    // Keep page at top
+                    window.scrollTo(0, 0);
+                    // Small delay to ensure everything is truly ready
+                    setTimeout(function() {
+                        startAnimations();
+                    }, 300);
+                });
+                
+                // Backup: Start animations after 3 seconds no matter what
+                setTimeout(function() {
+                    if (document.body.classList.contains('page-loading')) {
+                        startAnimations();
+                        console.log('Backup timer: Starting animations');
+                    }
+                }, 3000);
+                
+                // Prevent scrolling during page load
+                window.addEventListener('scroll', function() {
+                    if (document.body.classList.contains('page-loading')) {
+                        window.scrollTo(0, 0);
+                    }
+                });
+            });
+        </script>
+        
+        <script>
+            // SCROLL-TRIGGERED ANIMATIONS FOR ALL SECTIONS
+            document.addEventListener('DOMContentLoaded', function() {
+                const animatedSections = [
+                    { selector: '.technical', delay: 0 },
+                    { selector: '.preview-section', delay: 200 },
+                    { selector: '.main-program-section', delay: 400 },
+                    { selector: '.final-prototype', delay: 0 },
+                    { selector: '.mobile-fallback', delay: 0 },
+                    { selector: '.mobile-warning', delay: 0 }
+                ];
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Get the delay from the data attribute or default to 0
+                            const delay = parseInt(entry.target.dataset.animationDelay) || 0;
+                            
+                            setTimeout(() => {
+                                entry.target.classList.add('scroll-animate');
+                                console.log(`${entry.target.className} section animated!`);
+                            }, delay);
+                        }
+                    });
+                }, {
+                    threshold: 0.15, // Trigger when 15% of the section is visible
+                    rootMargin: '0px 0px -50px 0px' // Trigger slightly before it comes fully into view
+                });
+                
+                // Start observing all sections once the page loads
+                setTimeout(function() {
+                    animatedSections.forEach(section => {
+                        const element = document.querySelector(section.selector);
+                        if (element) {
+                            // Set delay as data attribute
+                            element.dataset.animationDelay = section.delay;
+                            observer.observe(element);
+                        }
+                    });
+                }, 500);
+            });
+    </script>
+    <!-- ======================================================================================= -->
+   
+    <!-- STYLESHEET -->
+     <style>
+
+        @import url('../../animations.css');
+
+            * {
+
+        /* Asterisk is a UNIVERSAL selector targetting every single element on the page */
+        box-sizing: border-box;
+        /* border-box ensures padding and border are included in sizing of element NOT MARGIN  */   
+        }
+
+        .code{
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            color: #0097CE;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+            padding: 0;   
+            background: linear-gradient(to right, #adadad, #ffffff);      
+            color: rgb(0, 0, 0);      
+        }
+
+        .menu {
+            background-color: rgba(195, 195, 195, 0.9);
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 20px 70px 20px 70px;
+            animation: slideD 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        #home {
+            /* position: absolute; */
+            /* top: 13px; */
+            /* left: 2.5vw; */
+            /* padding: 10px; */
+            color: rgb(154, 167, 13);
+            font-size: 30px;
+            /* border-radius: 5px;
+            z-index: 1000; */
+        }
+
+        h1 {
+           text-align: center;
+        }
+        
+        .overview {
+            min-width: 300px;
+            max-width: 700px; /* Set a max-width for larger screens */
+            flex: 1;
+            margin: 0 7.5vw 0 7.5vw;
+            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); */
+            color: rgb(255, 255, 255);
+            /* background: linear-gradient(to top, rgba(67, 67, 67, 0.8), rgba(213, 212, 212, 0.4)); */
+                        /* background: linear-gradient(to top, rgb(183, 198, 19), rgb(70, 77, 39)); */
+            /* background-color: rgba(238, 238, 238, 0.6); */
+            animation: slideU 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+            opacity: 0;
+        }
+
+
+        .head2 {
+            font-size: 1.5em;
+             font-weight: 800;
+        }
+
+        .head3 {
+            font-size: 1.25em;
+             font-weight: 700;
+        }
+        .technical {
+            width: 85%;
+            margin: auto;
+            overflow: auto;
+            padding: 10px 0px;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .technical.scroll-animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .technical .table {
+            width: 100%;
+            overflow: hidden;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 15px;
+            font-size: 16px;
+            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); */
+            text-align: left;
+        }
+    
+
+        th {
+            background-color: #5d5d5d;
+            /* background: linear-gradient(to top, rgb(183, 198, 19, 0.9), rgba(202, 248, 0, 0.3)); */
+            color: white;
+            font-weight: 700;
+            padding: 20px;
+            border: 0.5px solid rgba(0, 0, 0, 0.1);
+
+
+        }
+
+        td {
+
+            background-color: rgba(238, 238, 238, 0.6);
+            padding: 10px;
+            border: 0.5px solid rgba(0, 0, 0, 0.1);
+
+            /* color: rgb(57, 57, 57); */
+        }
+
+
+        /* Round the corner cells */
+        .table th:first-child {
+            border-top-left-radius: 15px;
+        }
+        
+        .table th:last-child {
+            border-top-right-radius: 15px;
+        }
+        
+        .table tr:last-child td:first-child {
+            border-bottom-left-radius: 15px;
+        }
+        
+        .table tr:last-child td:last-child {
+            border-bottom-right-radius: 15px;
+        }
+
+        .how-it-works {
+            width: 85%;
+            margin-left: 7.5%;
+            margin-right: 7.5%;
+            /* background-color: rgba(219, 219, 219, 0.7); */
+            border-radius: 15px;
+            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);    */
+        }
+        .preview-section, .main-program-section {
+            opacity: 0;
+            transform: translateY(50px) rotateX(10deg);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .preview-section.scroll-animate, .main-program-section.scroll-animate {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .final-prototype {
+            width: 85%;
+            margin-left: 7.5%;
+            margin-right: 7.5%;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: justify;
+        }
+        
+        .final-prototype.scroll-animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .responsive-iframe {
+            width: 100%;
+            height: 550px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .mobile-fallback {
+            display: none;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .mobile-warning {
+            display: none;
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ffeaa7;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        @media (hover: none) and (pointer: coarse){
+            /* This catches ALL touch devices: phones, tablets, iPads */
+            .responsive-iframe {
+                display: none;
+            }
+            .mobile-fallback {
+                display: block;
+            }
+            .mobile-warning {
+                display: block;
+            }
+        }
+
+        /* ============= CLEAN IOT DESIGN ============= */
+        .downloadbutton {
+            transition: transform 0.3s ease;
+        }
+        
+        .downloadbutton:hover {
+            transform: scale(1.05);
+        }
+        
+        .table tr:hover {
+            background-color: rgba(154, 167, 13, 0.1);
+            transform: translateY(-3px);
+            transition: all 0.3s ease;
+        }
+        
+        .project-image {
+            transition: filter 0.3s ease;
+            animation: slideL 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+            opacity: 0;
+        }
+        
+        .project-image:hover {
+            filter: brightness(1.1);
+        }
+
+        @media (hover: none) and (pointer: coarse){
+            /* This catches ALL touch devices: phones, tablets, iPads */
+            .responsive-iframe {
+                display: none;
+            }
+            .mobile-fallback {
+                display: block;
+            }
+            .mobile-warning {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Styles for mobile devices */
+            .downloadbutton {
+                width: 40px !important; /* Adjust width for mobile */
+                height: 40px !important; /* Adjust height for mobile */
+                bottom: 7px;
+                right: 7px;
+            }
+            
+            .reporttxt {
+                display: none; /* Hide the text on mobile */
+            }
+        }
+
+
+        
+
+
+        /*ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }   */
+    </style>
+    <!-- ======================================================================================= -->
+
+    <!-- HEAD -->
+    <!-- ======================================================================================= -->
+    <head>
+        
+        <title>Vex Programming for Warehouse Navigation</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- MONTSERRAT FONT: -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+
+        <!-- ICON PACK: -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Icon pack  -->
+        <script src="https://kit.fontawesome.com/6277525465.js" crossorigin="anonymous"></script>
+
+    </head>
+    <!-- ======================================================================================= -->
+
+    <body>
+        
+
+        <div class = "menu">
+            <!-- Home button -->
+        <a id = "home" href = "../projects.html" style = "position: absolute; left: 0; top: 50%; transform: translateY(-50%); margin-left: 5%;">
+                <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <span style="font-weight: 400;">
+        Wandering the Warehouse—Until the PID Controller Intervenes <br>
+        </span>
+    </div>
+
+        <div style = "position: relative; top: 0px; display: flex; flex-direction: row; flex-wrap: wrap; width: 100%; justify-content: center; background-color: black;  padding-top: 80px; padding-bottom: 30px; animation: slideU 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+            box-shadow: 0 0 15px rgba(154, 167, 13, 0.5), 0 0 25px rgba(154, 167, 13, 0.2);
+            border-bottom: 2px solid rgba(154, 167, 13, 0.4);
+            opacity: 0;">
+
+          
+            <div class="overview" style="text-align: justify;">
+                <p class = "head2">Overview:</p>
+                <p>Human labour is costly and inefficient in the long run. To counter this, autonomous tech can be adopted. In this project, our team developed a scaled down prototype of an autonomous vehicle using a V5 Vex Robot. The target was to achieve the precise pick-up and drop-off of payloads whilst navigating the complexities of a simulated warehouse environment.  The project being programmatic in nature, demanded the extensive use of C functionality guided by sensor readings to either hard code or implement control theories to achieve correct positioning.</p>
+                
+            </div>
+            <div class="project-image" style = "min-width: 300px; flex: 1; height: 300px; background-image: url(bg.png); background-size: contain; background-position: center; background-repeat: no-repeat;">   
+            </div>
+        </div>
+
+        <div class = "technical">
+
+            <p class = "head2">Key challenges and achievements:</p>
+
+        
+        <div style = "overflow: auto;">
+            <table class = "table" style = "border-color: rgb(161, 161, 161);">
+                <tr>
+                    <th>Function (descriptions found below)</th>
+                    <th>Challenge</th>
+                    <th>Solution</th>
+                    <th>Impact</th>            
+                </tr>
+                <tr>
+                    <td class = "code">driveStraightUntilBlack</td>
+                    <td>Failure to detect black line intermittently</td>
+                    <td>Optimized sensor polling frequency by 2×</td>
+                    <td>Consistent detection in final demo</td>
+                        
+                </tr>
+                <tr>
+                <td class = "code">drivePIcont, driveSonar, driveStraightUntilBlack, rotatePI</td>
+                <td>Integrator windup and drive motor saturation</td>
+                <td>Capping controller output through anti-windup schemes</td>   
+                <td>Smoother stops with programmed 3mm accuracy and no overshoot</td>
+                </tr>
+                <tr>
+                    <td class = "code">drivePIcont, driveSonar, driveStraightUntilBlack, rotatePI</td>
+                    <td>Robot jolt increasing chance of wheel slippage upon initial acceleartion due to large errors</td>
+                    <td>Implemented acceleration smoothing with a gradual ramp up</td>
+                    <td>No jolt or slippage</td>
+                </tr>
+                <tr>
+                    <td class = "code">drivePIcont, driveSonar, driveStraightUntilBlack</td>
+                    <td>Mechanical backlash in wheels causing deviation from desired trajectory</td>
+                    <td>Calibrated individual wheel effort to counteract mechanical backlash</td>
+                    <td>No visible deviation from trajectory</td>
+                </tr>
+            </table>
+                    
+        </div>
+        </div>
+        
+
+
+        <div class = "how-it-works" >
+            <div class="preview-section">
+                <hr>
+                <p class = "head2">Preview:</p>
+                <video width = "100%" controls muted loop style = "margin: 0 auto; display: block; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);">
+                    <source src = "test.mp4" type = "video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <br>
+                <hr>
+            </div>
+            <div class="main-program-section">
+                <p class = "head2">Layout:</p>
+                <p style = "margin-bottom: 60px;">I played a major role in developing the main program program keeping the constraints of the simulated warehouse layout in mind and we were able to achieve bullseye accuracy on the following layout: </p>
+                <div style = "overflow: auto;">
+                    <figure style="margin: 0 auto 80px auto; text-align: center;">
+                        <img src = "warehouse.png" alt = "Warehouse layout" style = "width: 60%; max-width:700px; min-width: 415px; height: auto; overflow: hidden; border-radius: 10px; display: block; margin: 0 auto;">
+                        <figcaption style="margin-top: 10px; font-style: italic; color: #666; font-size: 14px;">Simulated warehouse environment layout showing pickup and drop-off zones</figcaption>
+                    </figure>
+                </div>
+                <!-- Flowchart with its own scroll container -->
+                <!-- <div style="overflow-x: auto; overflow-y: hidden; margin-bottom: 30px;">
+                    <figure style="margin: 0 auto 80px auto; text-align: center;">
+                        <img src = "flowchart.png" alt = "Flowchart of main program" style = "width: 100%; max-width: 900px; height: auto; min-width: 750px; display: block; margin: 0 auto; border-radius: 10px;">
+                        <figcaption style="margin-top: 10px; font-style: italic; color: #666; font-size: 14px;">Main program flowchart illustrating the autonomous navigation logic</figcaption>
+                    </figure>
+                </div> -->
+                <hr>
+            </div>
+        </div>
+
+        <div class = "final-prototype">
+            <p class = "head2">Functions I worked on:</p>
+            <b>I performed an active role in developing, debugging and deploying these identified functions within the main program above. The full implementations are withheld to preserve academic integrity.</b>
+
+            
+                <p><span class = "code" style = "font-size: 18px; display: inline-block;">drivePIcont</span><br> Allows precise straight-line movement by pairing a PI controller for distance tracking with a P controller for trajectory alignment. It accepts inputs for target displacement and control gains and uses wheel encoder feedback along with the V5 timer to dynamically adjust voltage supplied to each motor. The function features real-world stability measures including anti-windup logic, saturation protection, and acceleration smoothing, ensuring accurate, responsive motion across a specified distance terminating within 3mm of the target distance.</p>
+                <p><span class = "code" style = "font-size: 18px;">driveStraightUntilBlack</span><br>Uses the same straightening P control logic of drivePIcont, to achieve straight-line motion until the detection of a black line leveraging the three available light sensor readings mounted beneath the central chassis. Higher frequency iteration of the control loop through reduced delay intervals facilitates the responsive and reliable stoppage of motion once all sensors simultaneously register the threshold readings.</p>
+                <p><span class = "code" style = "font-size: 18px;">driveSonar</span><br>Ensures the robot uses a front-mounted ultrasonic sensor to guide its approach to an object transitioning to idle once reaching a pre-defined separation distance from a detected object. driveSonar is a specialised implementation of drivePIcont, receiving as inputs, the same controller gains along with the desired offset from an object.</p>
+                <p><span class = "code" style = "font-size: 18px;">rotatePI</span><br>Implements a close-looped PI control scheme to rotate the robot chassis about its pivot point by a specified angle. It accepts control gains and the target rotation as input arguments. Wheel encoder counts are used to compute the arc length which is converted to angular displacement using the robot’s known dimensions. The function applies equal and opposite motor voltages to achieve on-the-spot rotation, further featuring anti-windup and saturation safeguards to ensure stable turning.</p>
+                <p><span class = "code" style = "font-size: 18px;">followBrown</span><br>Uses closed loop feedback from light sensors to achieve line following where marked with a brown colour. It is a single-input function requiring the desired power level or speed when following the line. It reviews a multitude of edge cases considering may combinations of position of sensors relative to the line to determine the required corrective action.</p>  
+            <hr>
+        </div>
+
+        <footer>
+            <p style = "color:rgb(162, 162, 162); text-align: center; padding: 2vw; margin: 0; font-size: 12px;" >© 2025 Sujan Galpottage | All rights reserved.<br>Last updated: July 15, 2025</p>
+        </footer>
+    </body>
+
+</html>
